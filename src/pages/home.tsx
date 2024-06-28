@@ -1,34 +1,57 @@
 import { createSignal } from "solid-js";
+import CryptoJS from "crypto-js";
 import "./asset/css/Register.css";
 
 export default function Register() {
   const [username, setUsername] = createSignal("");
   const [email, setEmail] = createSignal("");
   const [password, setPassword] = createSignal("");
+  const [terms, setTermscb] = createSignal(false);
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log({
+    const hashedPassword = CryptoJS.SHA256(password()).toString();
+    const userData = {
       username: username(),
       email: email(),
-      password: password(),
-    });
+      password: hashedPassword,
+    };
+
+    // Ambil data pengguna yang sudah ada di localStorage
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Tambahkan pengguna baru ke array
+    users.push(userData);
+
+    // Simpan kembali ke localStorage
+    localStorage.setItem("users", JSON.stringify(users));
+    alert("Data telah disimpan ke localStorage!");
+
+    setUsername("");
+    setEmail("");
+    setPassword("");
+    setTermscb(false);
+
+    // Redirect to login page
+    setTimeout(() => {
+      window.location.href = "/about"; // Ganti dengan path menuju halaman login Anda
+    }, 1000);
   };
 
   return (
     <section>
       <div class="container">
         <div class="form-container">
-          <img class="navbar" src="src\pages\asset\img\logo.png" alt="logo" />
+          <img class="navbar" src="src/pages/asset/img/logo.png" alt="logo" />
           <h1>Buat akun Anda!</h1>
           <p>Selamat datang! Silahkan masukkan informasi Anda</p>
           <div class="social-login">
             <button class="google">
-              <img src="src\pages\asset\img\google-logo.png" alt="google logo" />
+              <img src="src/pages/asset/img/google-logo.png" alt="google logo" />
               Google
             </button>
             <button class="facebook">
-              <img src="src\pages\asset\img\fb.png" alt="facebook logo" />
+              <img src="src/pages/asset/img/fb.png" alt="facebook logo" />
               Facebook
             </button>
           </div>
@@ -54,7 +77,7 @@ export default function Register() {
               <input type="password" id="password" value={password()} onInput={(e) => setPassword(e.target.value)} placeholder="Masukkan password Anda" required />
             </div>
             <div class="checkbox-container">
-              <input type="checkbox" id="terms" required />
+              <input type="checkbox" id="terms" checked={terms()} onChange={(e) => setTermscb(e.target.checked)} required />
               <label for="terms">
                 Saya telah membaca dan menyetujui{" "}
                 <span style="color: #AE8EF1;">
@@ -67,7 +90,7 @@ export default function Register() {
             </button>
           </form>
           <div class="login-link">
-            Sudah punya akun? <a href="#">Masuk sekarang!</a>
+            Sudah punya akun? <a href="http://localhost:3000/about">Masuk sekarang!</a>
           </div>
         </div>
         <div class="image-container">

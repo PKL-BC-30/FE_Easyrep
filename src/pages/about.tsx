@@ -1,35 +1,51 @@
 import { Component, createEffect, Suspense } from "solid-js";
 import { useRouteData } from "@solidjs/router";
 import type { AboutDataType } from "./about.data";
-import "./login.css";
 import { createSignal } from "solid-js";
+import CryptoJS from "crypto-js";
+import "./login.css";
 
-export default function Login() {
+const Login = () => {
   const [email, setEmail] = createSignal("");
   const [password, setPassword] = createSignal("");
 
-  const handleRegister = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({
-      email: email(),
-      password: password(),
-    });
+
+    // Ambil data pengguna dari localStorage
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const user = users.find((user) => user.email === email());
+
+    if (!user) {
+      alert("Email yang Anda inputkan tidak ada");
+      return;
+    }
+
+    const hashedPassword = CryptoJS.SHA256(password()).toString();
+    if (user.password === hashedPassword) {
+      alert("Login sukses");
+      // Redirect ke path setelah login
+      window.location.href = "http://localhost:3000/error";
+    } else {
+      alert("Password salah");
+    }
   };
 
   return (
     <section>
       <div class="container">
         <div class="form-container">
-          <img class="navbar" src="src\pages\asset\img\logo.png" alt="logo" />
+          <img class="navbar" src="src/pages/asset/img/logo.png" alt="logo" />
           <h1>Masuk ke akun Anda</h1>
           <p>Selamat datang kembali! Pilih metode untuk login:</p>
           <div class="social-login">
             <button class="google">
-              <img src="src\pages\asset\img\google-logo.png" alt="google logo" />
+              <img src="src/pages/asset/img/google-logo.png" alt="google logo" />
               Google
             </button>
             <button class="facebook">
-              <img src="src\pages\asset\img\fb.png" alt="facebook logo" />
+              <img src="src/pages/asset/img/fb.png" alt="facebook logo" />
               Facebook
             </button>
           </div>
@@ -38,7 +54,7 @@ export default function Login() {
             <div class="separator-text">ATAU</div>
             <div class="separator-line"></div>
           </div>
-          <form onSubmit={handleRegister}>
+          <form onSubmit={handleSubmit}>
             <div>
               <p>Email</p>
               <label for="email"></label>
@@ -55,7 +71,7 @@ export default function Login() {
             </button>
           </form>
           <div class="login-link">
-            Belum punya akun? <a href="#">Buat sekarang!</a>
+            Belum punya akun? <a href="http://localhost:3000/">Buat sekarang!</a>
           </div>
         </div>
         <div class="image-container">
@@ -66,4 +82,6 @@ export default function Login() {
       </div>
     </section>
   );
-}
+};
+
+export default Login;
