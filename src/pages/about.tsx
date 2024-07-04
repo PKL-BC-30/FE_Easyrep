@@ -25,8 +25,10 @@ const Login = () => {
     const hashedPassword = CryptoJS.SHA256(password()).toString();
     if (user.password === hashedPassword) {
       alert("Login sukses");
+      // Simpan nama pengguna di localStorage
+      localStorage.setItem("loggedInUser", JSON.stringify(user.username));
       // Redirect ke path setelah login
-      window.location.href = "http://localhost:3000/error";
+      window.location.href = "http://localhost:3000/landingpage";
     } else {
       alert("Password salah");
     }
@@ -36,12 +38,12 @@ const Login = () => {
     <section>
       <div class="container">
         <div class="form-container">
-          <img class="navbar" src="src/pages/asset/img/logo.png" alt="logo" />
+          <img class="navbar" src="src/pages/asset/img/logoweb.png" alt="logo" />
           <h1>Masuk ke akun Anda</h1>
           <p>Selamat datang kembali! Pilih metode untuk login:</p>
           <div class="social-login">
             <button class="google">
-              <img src="src/pages/asset/img/google-logo.png" alt="google logo" />
+              <img src="src/pages/asset/img/google.png" alt="google logo" />
               Google
             </button>
             <button class="facebook">
@@ -65,7 +67,7 @@ const Login = () => {
               <label for="password"></label>
               <input type="password" id="password" value={password()} onInput={(e) => setPassword(e.target.value)} placeholder="Masukkan password Anda" required />
             </div>
-            <div class="forgot-password">Lupa password??</div>
+            <div class="forgot-password">Lupa password?</div>
             <button type="submit" class="submit-btn">
               Masuk
             </button>
@@ -76,8 +78,8 @@ const Login = () => {
         </div>
         <div class="image-container">
           <h1>Lihat fasilitas </h1>
-          <h2>infrastruktur rusak??</h2>
-          <h1>Masuk untuk melaporkan sekarang!!</h1>
+          <h2>infrastruktur rusak?</h2>
+          <h1>Masuk untuk melaporkan sekarang!</h1>
         </div>
       </div>
     </section>
@@ -85,3 +87,4 @@ const Login = () => {
 };
 
 export default Login;
+

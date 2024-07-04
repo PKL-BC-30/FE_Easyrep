@@ -20,6 +20,13 @@ export default function Register() {
     // Ambil data pengguna yang sudah ada di localStorage
     let users = JSON.parse(localStorage.getItem("users")) || [];
 
+    // Periksa apakah email sudah ada
+    const emailExists = users.some((user) => user.email === email());
+    if (emailExists) {
+      alert("Email sudah terdaftar. Silakan gunakan email lain.");
+      return;
+    }
+
     // Tambahkan pengguna baru ke array
     users.push(userData);
 
@@ -42,12 +49,12 @@ export default function Register() {
     <section>
       <div class="container">
         <div class="form-container">
-          <img class="navbar" src="src/pages/asset/img/logo.png" alt="logo" />
+          <img class="navbar" src="src/pages/asset/img/logoweb.png" alt="logo" />
           <h1>Buat akun Anda!</h1>
           <p>Selamat datang! Silahkan masukkan informasi Anda</p>
           <div class="social-login">
             <button class="google">
-              <img src="src/pages/asset/img/google-logo.png" alt="google logo" />
+              <img src="src\pages\asset\img\google.png" alt="google logo" />
               Google
             </button>
             <button class="facebook">
