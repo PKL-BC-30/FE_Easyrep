@@ -26,4 +26,8 @@ export const routes: RouteDefinition[] = [
     path: "/tentang",
     component: lazy(() => import("./pages/tentang")),
   },
+  {
+    path: "/useradmin",
+    component: lazy(() => import("./pages/GridPage")),
+  },
 ];

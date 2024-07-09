@@ -3,7 +3,7 @@
 body {
   background: #070a29;
   color: #fff;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 section {
@@ -16,12 +16,24 @@ section {
   overflow: hidden;
   width: 100%;
   font-family: "Plus Jakarta Sans", sans-serif;
+  margin-left: -20px;
+}
+
+.navbarr {
+  justify-content: space-between;
+  align-items: center;
+  width: 66%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 .form-container {
   flex: 1;
-  padding-left: 10px;
   font-family: "Plus Jakarta Sans", sans-serif;
+  background: #1a1a2e;
+  padding: 2rem;
+  border-radius: 10px;
 }
 
 .form-container h1 {
@@ -34,8 +46,8 @@ section {
 
 .image-container {
   flex: 1;
-  background-image: url("../../asset/img/1.png");
-  background-size: cover;
+  background-image: url("../img/gambar-register.png");
+  background-size: 130%;
   background-position: center;
   display: flex;
   flex-direction: column;
@@ -44,6 +56,7 @@ section {
   color: #fff;
   border-radius: 10px;
   margin-left: 3rem;
+  height: 750px;
 }
 
 .image-container h2 {
@@ -61,11 +74,13 @@ section {
   color: white;
 }
 
-h1 {
+.container h1 {
   color: white;
-  font-size: 48px;
-  font-family: Inter;
+  font-size: 30px;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 600;
+  margin-left: -110px;
+  margin-top: 0rem;
 }
 
 p {
@@ -76,6 +91,7 @@ p {
   letter-spacing: 0.44px;
   word-wrap: break-word;
   margin-top: -10px;
+  margin-top: -1.2rem; /* Atur margin atas menjadi 0 */
 }
 
 .social-login {
@@ -158,14 +174,14 @@ form p {
 }
 
 label {
-  margin-bottom: 0.5rem;
+  margin-bottom: -1rem;
   font-size: 0.875rem;
   color: #fff;
 }
 
 input {
-  padding: 0.5rem;
-  margin-bottom: 1.5rem;
+  padding: 0.7rem;
+  margin-bottom: 1rem;
   border-radius: 5px;
   background-color: #222436;
   color: #fff;
@@ -176,7 +192,7 @@ input {
 .checkbox-container {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   flex-direction: none;
   padding: 0;
 }
@@ -188,6 +204,7 @@ input {
 .checkbox-container label {
   font-size: 0.875rem;
   margin-left: -12rem;
+  margin-bottom: -0.1rem;
 }
 
 .submit-btn {
@@ -213,11 +230,7 @@ input {
   text-decoration: none;
 }
 
-.image-container P {
+.image-container p {
   font-size: 13px;
   margin-top: 1px;
-}
-
-.logo {
-  background-image: url(../img/google-logo.png);
 }

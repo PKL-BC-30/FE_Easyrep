@@ -1,0 +1,48 @@
+html,
+
+body {
+  background: #070a29;
+  color: #fff;
+  padding: 2rem;
+  margin: 30px 40px 20px 30px; /* Atur margin: atas, kanan, bawah, kiri */
+}
+
+section {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.full-page-grid {
+  height: 70vh;
+  width: 80vw;
+}
+
+/* Custom style for AG Grid */
+.ag-theme-alpine {
+  --ag-background-color: #222436;
+  --ag-odd-row-background-color: #222436;
+  --ag-header-background-color: #222436;
+  --ag-foreground-color: white; /* Optional: For text color */
+}
+
+
+/* Atau jika menggunakan class .role-dropdown */
+.role-dropdown {
+  width: 40%;
+  padding: 5px 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #8a2be2; /* Warna latar belakang ungu */
+  color: #fff; /* Warna teks putih */
+}
+

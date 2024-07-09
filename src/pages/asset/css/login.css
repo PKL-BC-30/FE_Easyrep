@@ -3,7 +3,7 @@
 body {
   background: #070a29;
   color: #fff;
-  padding: 2rem;
+  padding: 1rem;
   margin: 30px 50px 40px 90px; /* Atur margin: atas, kanan, bawah, kiri */
 }
 
@@ -26,9 +26,9 @@ section {
   margin-bottom: 10px;
 }
 
-.image-container {
+.image-containerr {
   flex: 1;
-  background-image: url("../pages/asset/img/gambar1.png");
+  background-image: url("../img/gambar-login.png");
   background-size: contain; /* Mengatur gambar agar sesuai dengan kontainer tanpa memotong */
   background-repeat: no-repeat; /* Menghindari pengulangan gambar */
   background-position: center; /* Menyelaraskan gambar di tengah */
@@ -40,43 +40,52 @@ section {
   border-radius: 10px;
   width: 60%; /* Mengurangi lebar elemen */
   height: 560px; /* Menyesuaikan tinggi elemen */
-  margin: auto; /* Untuk meratakan elemen di tengah secara horizontal */
+  margin: auto;
 }
-
-.image-container h2 {
-  font-size: 96px;
-  margin: 0;
-  font-weight: 800;
-  text-align: right;
-}
-
-.image-container h1 {
+.image-containerr h1 {
   color: white;
   font-size: 30px;
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 600;
-  margin-left: 60px;
-  margin-bottom: 260px;
+  padding-left: 9.8rem;
+  margin-bottom: 20rem; /* Adjust margin-bottom for better spacing */
+  text-align: left; /* Align text to the left */
 }
-.image-container h2 {
+
+.image-containerr h2 {
   color: white;
   font-size: 30px;
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 600;
-  margin-right: 120px;
-  margin-top: -260px;
+  margin-left: 3rem;
+  margin-top: -20rem; /* Set margin-top to 0 */
+  text-align: left; /* Align text to the left */
+  margin-bottom: -0.1rem; /* Adjust margin-bottom for better spacing */
 }
 
-h1 {
+.image-containerr h3 {
   color: white;
-  font-size: 40px;
+  font-size: 30px;
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 600;
+  margin-left: 3rem;
+  margin-top: 0; /* Set margin-top to 0 */
+  text-align: left; /* Align text to the left */
+  margin-bottom: 16rem; /* Adjust margin-bottom for better spacing */
+}
+
+h2 {
+  color: white;
+  font-size: 30px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: left; /* Align text to the left */
 }
 
 p {
   color: rgba(255, 255, 255, 0.8);
-  font-size: 0.875rem;
+  font-size: 2rem;
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 500;
   letter-spacing: 0.44px;
@@ -227,11 +236,5 @@ input {
   text-decoration: none;
 }
 
-.image-container P {
-  font-size: 13px;
-  margin-top: 1px;
-}
 
-.logo {
-  background-image: url(../img/google-logo.png);
-}
+

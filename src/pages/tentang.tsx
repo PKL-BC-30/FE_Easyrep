@@ -25,7 +25,7 @@ export default function LandingPage() {
 
       <h1 class="display-4"></h1>
       <p class="lead"></p>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <svg class="custom-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 400">
         <path
           fill="#4F428D"
           fill-opacity="1"

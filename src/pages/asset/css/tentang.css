@@ -58,39 +58,46 @@
 .nav-links a:hover {
   color: #e0e0ff;
 }
-.card-container{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 25px;
-    margin-top: 100px;
-}
-.card{
-    width: 450px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    margin: 18px;
-}
-.card-content{
-    padding: 30px 30px;
-    line-height: 1.3;
-}
-.card-content h1{
-    text-align: center;
-    font-size: 35px;
-    margin-bottom: 20px;
-    color: #000;
-}
-.card-content p{
-    text-align: justify;
-    font-size: 17px;
-    margin-bottom: 20px;
-    color: #666;
+
+.custom-svg {
+  width: 140%; /* Membuat SVG melebar hingga lebar elemen kontainernya */
+  height: 600px; /* Mengatur tinggi SVG menjadi 600px */
+  margin-left: -200px;
 }
 
 
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 100px;
+}
+.card {
+  width: 450px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  margin: 18px;
+}
+.card-content {
+  padding: 30px 30px;
+  line-height: 1.3;
+}
+.card-content h1 {
+  text-align: center;
+  font-size: 35px;
+  margin-bottom: 20px;
+  color: #000;
+}
+.card-content p {
+  text-align: justify;
+  font-size: 17px;
+  margin-bottom: 20px;
+  color: #666;
+}
 
 /* Footer */
 .footer {
@@ -118,7 +125,6 @@
   align-items: center; /* Menyelaraskan elemen di tengah secara vertikal */
   margin-bottom: -1.5rem;
   margin-right: 950px;
-  
 }
 
 .footer-logo img {
@@ -138,7 +144,7 @@
 
 .footer-contact {
   flex: 1 1 200px;
-  min-width: 200px; 
+  min-width: 200px;
   margin-right: 6rem;
   padding: 0; /* Menghilangkan padding */
 }
@@ -260,4 +266,3 @@
     gap: 0.5rem;
   }
 }
-

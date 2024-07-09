@@ -3,7 +3,7 @@ import { useRouteData } from "@solidjs/router";
 import type { AboutDataType } from "./about.data";
 import { createSignal } from "solid-js";
 import CryptoJS from "crypto-js";
-import "./login.css";
+import "./asset/css/login.css"
 
 const Login = () => {
   const [email, setEmail] = createSignal("");
@@ -28,7 +28,7 @@ const Login = () => {
       // Simpan nama pengguna di localStorage
       localStorage.setItem("loggedInUser", JSON.stringify(user.username));
       // Redirect ke path setelah login
-      window.location.href = "http://localhost:3000/landingpage";
+      window.location.href = "/landingpage";
     } else {
       alert("Password salah");
     }
@@ -38,8 +38,8 @@ const Login = () => {
     <section>
       <div class="container">
         <div class="form-container">
-          <img class="navbar" src="src/pages/asset/img/logoweb.png" alt="logo" />
-          <h1>Masuk ke akun Anda</h1>
+          <img class="navbarr" src="src/pages/asset/img/logoweb.png" alt="logo" />
+          <h2>Masuk ke akun Anda</h2>
           <p>Selamat datang kembali! Pilih metode untuk login:</p>
           <div class="social-login">
             <button class="google">
@@ -76,10 +76,10 @@ const Login = () => {
             Belum punya akun? <a href="http://localhost:3000/">Buat sekarang!</a>
           </div>
         </div>
-        <div class="image-container">
+        <div class="image-containerr">
           <h1>Lihat fasilitas </h1>
           <h2>infrastruktur rusak?</h2>
-          <h1>Masuk untuk melaporkan sekarang!</h1>
+          <h3>Masuk untuk melaporkan sekarang!</h3>
         </div>
       </div>
     </section>

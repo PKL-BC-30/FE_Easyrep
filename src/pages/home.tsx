@@ -14,7 +14,7 @@ export default function Register() {
     const userData = {
       username: username(),
       email: email(),
-      password: hashedPassword,
+      password: password(),
     };
 
     // Ambil data pengguna yang sudah ada di localStorage
@@ -49,7 +49,7 @@ export default function Register() {
     <section>
       <div class="container">
         <div class="form-container">
-          <img class="navbar" src="src/pages/asset/img/logoweb.png" alt="logo" />
+          <img class="navbarr" src="src/pages/asset/img/logoweb.png" alt="logo" />
           <h1>Buat akun Anda!</h1>
           <p>Selamat datang! Silahkan masukkan informasi Anda</p>
           <div class="social-login">

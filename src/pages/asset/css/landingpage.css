@@ -95,14 +95,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4rem 2rem;
+  padding: 1rem 2rem;
   position: relative;
   z-index: 1;
   margin-top: 60px; /* To offset the fixed navbar height */
 }
 
 .header-content {
-  max-width: 600px;
+  max-width: 1000px;
 }
 
 .header h1 {
@@ -110,6 +110,8 @@
   font-size: 3rem;
   margin: 0;
   line-height: 1.2;
+  margin-left: -1.2rem;
+  font-weight: 600;
 }
 
 .header h1 span {
@@ -141,6 +143,7 @@
 .header-image {
   max-width: 400px;
   width: 100%;
+  margin-right: -4rem;
 }
 
 .form-page {
@@ -169,6 +172,7 @@
 .form-header h2 {
   font-size: 30px;
   font-weight: 600;
+  text-align: center;
   margin: 0;
   color: #a3a3ff;
 }
@@ -211,8 +215,8 @@ textarea::placeholder {
 
 .file-upload {
   position: relative;
-  overflow: hidden;
   width: 100%;
+  margin-bottom: 1rem;
 }
 
 .file-input {
@@ -301,7 +305,7 @@ button[type="submit"]:hover {
 }
 
 .feature__card h4 {
-  margin-block: 0.5rem;
+  margin-block: 1rem;
   font-size: 1.2rem;
   font-weight: 700;
   color: #483d8b; /* Warna teks gelap */
@@ -429,9 +433,9 @@ button[type="submit"]:hover {
   color: #e0e0ff;
   padding: 2rem 1rem;
   position: relative;
-  width: 140%;
+  width: 143%;
   margin-top: 7rem;
-  margin-left: -12.5rem;
+  margin-left: -14rem;
   margin-bottom: -8rem;
 }
 
