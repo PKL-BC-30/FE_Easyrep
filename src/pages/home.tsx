@@ -10,11 +10,13 @@ export default function Register() {
 
   const handleRegister = (e) => {
     e.preventDefault();
+
+    // Hash password sebelum disimpan
     const hashedPassword = CryptoJS.SHA256(password()).toString();
     const userData = {
       username: username(),
       email: email(),
-      password: password(),
+      password: hashedPassword,  // Pastikan ini di-hash
     };
 
     // Ambil data pengguna yang sudah ada di localStorage
@@ -97,7 +99,7 @@ export default function Register() {
             </button>
           </form>
           <div class="login-link">
-            Sudah punya akun? <a href="http://localhost:3000/about">Masuk sekarang!</a>
+            Sudah punya akun? <a href="/about">Masuk sekarang!</a>
           </div>
         </div>
         <div class="image-container">

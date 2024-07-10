@@ -1,6 +1,7 @@
 import { Component, createEffect, Suspense } from "solid-js";
 import { useRouteData } from "@solidjs/router";
 import type { AboutDataType } from "./about.data";
+import { useNavigate } from "@solidjs/router";
 import { createSignal } from "solid-js";
 import CryptoJS from "crypto-js";
 import "./asset/css/login.css"
@@ -8,14 +9,13 @@ import "./asset/css/login.css"
 const Login = () => {
   const [email, setEmail] = createSignal("");
   const [password, setPassword] = createSignal("");
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e: Event) => {
     e.preventDefault();
 
-    // Ambil data pengguna dari localStorage
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-
-    const user = users.find((user) => user.email === email());
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    const user = users.find((user: { email: string; password: string; role: string }) => user.email === email());
 
     if (!user) {
       alert("Email yang Anda inputkan tidak ada");
@@ -25,10 +25,12 @@ const Login = () => {
     const hashedPassword = CryptoJS.SHA256(password()).toString();
     if (user.password === hashedPassword) {
       alert("Login sukses");
-      // Simpan nama pengguna di localStorage
-      localStorage.setItem("loggedInUser", JSON.stringify(user.username));
-      // Redirect ke path setelah login
-      window.location.href = "/landingpage";
+      localStorage.setItem("currentUser", JSON.stringify(user));
+      if (user.role === "admin") {
+        navigate("/useradmin");
+      } else {
+        navigate("/landingpage");
+      }
     } else {
       alert("Password salah");
     }

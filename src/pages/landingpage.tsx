@@ -1,5 +1,4 @@
 import { createSignal, onMount } from "solid-js";
-import CryptoJS from "crypto-js";
 import { render } from "solid-js/web";
 import "./asset/css/landingpage.css";
 
@@ -7,9 +6,9 @@ export default function LandingPage() {
   const [loggedInUser, setLoggedInUser] = createSignal("");
 
   onMount(() => {
-    const user = JSON.parse(localStorage.getItem("loggedInUser"));
-    if (user) {
-      setLoggedInUser(user);
+    const users = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (users) {
+      setLoggedInUser(users);
     }
   });
 

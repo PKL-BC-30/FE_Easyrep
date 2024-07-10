@@ -98,7 +98,7 @@
   padding: 1rem 2rem;
   position: relative;
   z-index: 1;
-  margin-top: 60px; /* To offset the fixed navbar height */
+  margin-top: 60px; 
 }
 
 .header-content {
@@ -161,7 +161,7 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   max-width: 1000px;
   width: 100%;
-  box-sizing: border-box; /* Ensure padding is included in width calculation */
+  box-sizing: border-box; 
 }
 
 .form-header {
@@ -259,13 +259,13 @@ button[type="submit"]:hover {
 .section__header {
   font-size: 16px;
   font-family: "Plus Jakarta Sans", sans-serif;
-  color: rgb(228, 228, 228); /* Warna teks ungu */
+  color: rgb(228, 228, 228); 
   margin-top: 20px;
 }
 
 .section__subheader {
-  font-size: 30px; /* Anda dapat menyesuaikan ukuran jika diperlukan */
-  color: rgb(255, 255, 255); /* Warna teks ungu */
+  font-size: 30px; 
+  color: rgb(255, 255, 255); 
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 700;
   margin-top: 30px;
@@ -273,7 +273,7 @@ button[type="submit"]:hover {
 }
 
 .break {
-  display: block; /* Ini akan menyebabkan teks pindah ke baris baru */
+  display: block; 
 }
 
 .feature__container :is(.section__subheader, .section__header) {

@@ -2,9 +2,9 @@ import { createSignal, onMount } from "solid-js";
 import AgGridSolid from "ag-grid-solid";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import "./asset/css/GridComponent.css";
+import "../pages/asset/css/GridManagement.css";
 
-const GridComponent = () => {
+const GridManagement = () => {
   const [rowData, setRowData] = createSignal<any[]>([]);
 
   onMount(() => {
@@ -46,7 +46,29 @@ const GridComponent = () => {
         values: ["Admin", "User"],
       },
     },
-      ];
+    {
+      headerName: "Actions",
+      cellRenderer: (params: any) => {
+        const container = document.createElement("div");
+        container.classList.add("action-buttons");
+
+        const updateButton = document.createElement("button");
+        updateButton.innerText = "Update";
+        updateButton.classList.add("action-button", "update-button");
+        updateButton.addEventListener("click", () => updateUser(params));
+
+        const deleteButton = document.createElement("button");
+        deleteButton.innerText = "Delete";
+        deleteButton.classList.add("action-button", "delete-button");
+        deleteButton.addEventListener("click", () => deleteUser(params.data));
+
+        container.appendChild(updateButton);
+        container.appendChild(deleteButton);
+
+        return container;
+      },
+    },
+  ];
 
   const defaultColDef = {
     flex: 1,
@@ -72,4 +94,4 @@ const GridComponent = () => {
   );
 };
 
-export default GridComponent;
+export default GridManagement;

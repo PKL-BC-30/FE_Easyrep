@@ -1,0 +1,29 @@
+/* GridManagement.css */
+
+.action-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.action-button {
+  padding: 2px; /* Mengatur padding agar sesuai dengan lebar kolom */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px; /* Mengatur ukuran font */
+  width: 50%; /* Memastikan tombol mengambil lebar penuh kolom */
+  box-sizing: border-box; /* Menghitung padding dan border dalam lebar elemen */
+}
+.update-button {
+  background-color: #4c5caf;
+  color: white;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.action-button:hover {
+  opacity: 0.8;
+}

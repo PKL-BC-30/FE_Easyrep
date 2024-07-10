@@ -1,6 +1,21 @@
+import { createSignal, onMount } from "solid-js";
 import "./asset/css/tentang.css";
 
 export default function LandingPage() {
+  const [loggedInUser, setLoggedInUser] = createSignal("");
+
+  onMount(() => {
+    const users = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (users) {
+      setLoggedInUser(users);
+    }
+  });
+
+  const handleLogout = () => {
+    localStorage.removeItem("loggedInUser");
+    setLoggedInUser("");
+  };
+
   return (
     <section class="landing-page">
       <nav class="navbar">
@@ -12,7 +27,7 @@ export default function LandingPage() {
             <a href="#home">Beranda</a>
           </li>
           <li>
-            <a href="#about">Tentang</a>
+            <a href="http://localhost:3000/tentang">Tentang</a>
           </li>
           <li>
             <a href="#tatacara">Tata Cara</a>
@@ -21,33 +36,64 @@ export default function LandingPage() {
             <a href="#contact">Kontak</a>
           </li>
         </ul>
+        <div class="auth-buttons">
+          {loggedInUser() ? (
+            <>
+              <span>Halo, {loggedInUser()}</span>
+              <button onClick={handleLogout} class="logout">
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <a href="http://localhost:3000/about" class="login">
+                Login
+              </a>
+              <a href="http://localhost:3000/" class="register">
+                Register
+              </a>
+            </>
+          )}
+        </div>
       </nav>
 
-      <h1 class="display-4"></h1>
-      <p class="lead"></p>
-      <svg class="custom-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 400">
-        <path
-          fill="#4F428D"
-          fill-opacity="1"
-          d="M0,128L26.7,144C53.3,160,107,192,160,197.3C213.3,203,267,181,320,197.3C373.3,213,427,267,480,272C533.3,277,587,235,640,202.7C693.3,171,747,149,800,165.3C853.3,181,907,235,960,245.3C1013.3,256,1067,224,1120,208C1173.3,192,1227,192,1280,208C1333.3,224,1387,256,1413,272L1440,288L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z"
-        ></path>
-      </svg>
+      <div class="content-containeer">
+        <div class="title">
+          <div class="title-text">Apa itu Easyrep?</div>
+          <div class="title-line"></div>
+        </div>
+        <div class="text">
+          Easyrep adalah platform online yang memudahkan warga untuk melaporkan masalah infrastruktur di lingkungan mereka, seperti jalan rusak, lampu jalan mati, atau fasilitas umum lainnya yang perlu diperbaiki. Dengan antarmuka yang
+          mudah digunakan dan proses pelaporan yang cepat, EZRep memastikan setiap laporan langsung diteruskan ke pihak berwenang untuk tindakan segera.
+        </div>
+      </div>
 
-      <div class="card-container">
-        <div class="card">
-          <div class="card-content">
+      <div class="tentang-container">
+        <div class="tentang">
+          <div class="tentang-content">
             <h1>Visi</h1>
             <p> Visi kami adalah menciptakan lingkungan yang lebih baik dan berkelanjutan dengan memanfaatkan teknologi untuk memberdayakan masyarakat dalam pelaporan dan penanganan kerusakan.</p>
           </div>
         </div>
-        <div class="card">
-          <div class="card-content">
+        <div class="tentang">
+          <div class="tentang-content">
             <h1>Misi</h1>
             <p>
               Misi kami adalah menyediakan platform yang dapat diandalkan dan mudah digunakan untuk melaporkan setiap kerusakan dengan detail yang jelas dan dokumentasi yang akurat. Kami berkomitmen untuk bekerja sama dengan pemerintah,
               lembaga, dan masyarakat umum untuk mencapai lingkungan yang lebih baik.
             </p>
           </div>
+        </div>
+      </div>
+      <div class="containeer">
+        <div class="text-wrapper">
+          <div class="text-content">
+            <span>Setiap laporan yang Anda buat merupakan langkah kecil </span>
+            <span>yang berarti untuk menciptakan perubahan baru.</span>
+          </div>
+        </div>
+        <div class="button-wrapper">
+          <div class="button">Laporkan kerusakan</div>
         </div>
       </div>
 

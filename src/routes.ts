@@ -30,4 +30,8 @@ export const routes: RouteDefinition[] = [
     path: "/useradmin",
     component: lazy(() => import("./pages/GridPage")),
   },
+  {
+    path: "/usermanagement",
+    component: lazy(() => import("./pages/GridManagement")),
+  },
 ];
