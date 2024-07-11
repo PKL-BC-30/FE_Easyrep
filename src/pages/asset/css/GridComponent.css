@@ -1,29 +1,49 @@
 html,
-
 body {
-  background: #070a29;
+  background: #0a0c20;
   color: #fff;
-  padding: 2rem;
-  margin: 30px 40px 20px 30px; /* Atur margin: atas, kanan, bawah, kiri */
-}
-
-section {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.page-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  margin: 0; /* Reset margin untuk keseluruhan halaman */
+  padding: 0; /* Reset padding untuk keseluruhan halaman */
   height: 100%;
   width: 100%;
 }
 
-.full-page-grid {
-  height: 70vh;
-  width: 80vw;
+.page-container {
+  display: flex;
+  height: 100vh; /* Menyesuaikan tinggi komponen agar penuh pada layar */
+  overflow: hidden; /* Mengatur overflow menjadi hidden untuk mencegah scroll */
+}
+
+#sidebar {
+  width: 280px;
+  height: 100%;
+  background-color: #060714; /* Warna background sidebar */
+  color: #fbfbfb; /* Warna teks di sidebar */
+  z-index: 1000;
+  overflow-x: hidden;
+  transition: width 0.3s ease;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* Mengatur konten menjadi kolom */
+  justify-content: flex-start; /* Menyusun konten dari atas ke bawah */
+  align-items: center;
+  padding-left: 180px; /* Menambahkan padding agar konten tidak tertutup sidebar */
+  overflow-y: auto; /* Mengaktifkan overflow-y jika konten melebihi tinggi viewport */
+}
+
+.content h1 {
+  margin-top: 8px; /* Jarak atas judul dari konten */
+  margin-bottom: 20px; /* Jarak bawah judul dari konten */
+}
+
+.grid-wrapper {
+  width: calc(100% - 290px); /* Menghitung lebar grid agar tidak tertutup oleh sidebar */
+  height: 80vh;
+  overflow: auto; /* Mengaktifkan overflow jika diperlukan */
+  padding: 20px; /* Menambahkan padding agar grid tidak terlalu dekat dengan tepi */
 }
 
 /* Custom style for AG Grid */
@@ -34,8 +54,6 @@ section {
   --ag-foreground-color: white; /* Optional: For text color */
 }
 
-
-/* Atau jika menggunakan class .role-dropdown */
 .role-dropdown {
   width: 40%;
   padding: 5px 5px;
@@ -46,3 +64,43 @@ section {
   color: #fff; /* Warna teks putih */
 }
 
+#sidebar .side-menu {
+  margin-top: 20px;
+  list-style-type: none;
+  padding: 0;
+}
+
+#sidebar .side-menu li {
+  margin-bottom: 10px;
+}
+
+#sidebar .side-menu li a {
+  display: block;
+  padding: 12px;
+  border-radius: 10px;
+  color: #fbfbfb;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+#sidebar .side-menu li a:hover {
+  background-color: #342e37; /* Warna hover untuk menu sidebar */
+}
+
+#sidebar .side-menu li.active a {
+  background-color: #342e37; /* Warna menu aktif pada sidebar */
+}
+
+#sidebar .side-menu li a .bx {
+  margin-right: 10px;
+}
+
+#sidebar .side-menu li a.logout {
+  color: #db504a; /* Warna untuk menu logout */
+  margin-top: auto; /* Mendorong logout ke bawah */
+}
+
+#sidebar .side-menu li a.logout:hover {
+  background-color: #342e37; /* Warna hover untuk menu logout */
+}

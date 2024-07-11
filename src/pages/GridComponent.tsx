@@ -3,6 +3,8 @@ import AgGridSolid from "ag-grid-solid";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import "./asset/css/GridComponent.css";
+import Sidebar from "./sidebar";
+import "boxicons/css/boxicons.min.css";
 
 const GridComponent = () => {
   const [rowData, setRowData] = createSignal<any[]>([]);
@@ -46,7 +48,7 @@ const GridComponent = () => {
         values: ["Admin", "User"],
       },
     },
-      ];
+  ];
 
   const defaultColDef = {
     flex: 1,
@@ -66,8 +68,14 @@ const GridComponent = () => {
   };
 
   return (
-    <div class="ag-theme-alpine" style={{ height: "500px", width: "100%" }}>
-      {rowData().length > 0 ? <AgGridSolid columnDefs={columnDefs} rowData={rowData()} defaultColDef={defaultColDef} onCellValueChanged={(event: any) => updateUser(event)} /> : <p>Loading...</p>}
+    <div class="page-container">
+      <Sidebar />
+      <div class="content">
+        <h1>User List</h1> 
+        <div class="grid-wrapper ag-theme-alpine">
+          {rowData().length > 0 ? <AgGridSolid columnDefs={columnDefs} rowData={rowData()} defaultColDef={defaultColDef} onCellValueChanged={(event: any) => updateUser(event)} /> : <p>Loading...</p>}
+        </div>
+      </div>
     </div>
   );
 };

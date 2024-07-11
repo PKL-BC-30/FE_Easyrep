@@ -8,7 +8,7 @@ body {
 
 section {
   max-width: 1000px;
-  margin: 0 auto;
+  margin-top: 40px; 
 }
 
 .container {
@@ -16,7 +16,6 @@ section {
   overflow: hidden;
   width: 100%;
   font-family: "Plus Jakarta Sans", sans-serif;
-  margin-left: -20px;
 }
 
 .navbarr {
@@ -32,11 +31,12 @@ section {
   flex: 1;
   font-family: "Plus Jakarta Sans", sans-serif;
   background: #1a1a2e;
-  padding: 2rem;
   border-radius: 10px;
+  margin-right: 2rem; /* Menambah margin kanan untuk memisahkan dari gambar */
 }
 
 .form-container h1 {
+  margin-bottom: -4px;
   font-family: "Plus Jakarta Sans", sans-serif;
 }
 
@@ -55,20 +55,19 @@ section {
   padding: 2rem;
   color: #fff;
   border-radius: 10px;
-  margin-left: 3rem;
-  height: 750px;
+  margin-left: 2rem; /* Menambah margin kiri untuk memisahkan dari form */
 }
 
 .image-container h2 {
-  font-size: 96px;
+  font-size: 72px;
   margin: 0;
   font-weight: 800;
   text-align: center;
 }
 
 .image-container p {
-  font-size: 18px;
-  margin-top: 16px;
+  font-size: 14px; /* Menyesuaikan ukuran font agar lebih kecil */
+  margin-top: 10px;
   text-align: center;
   font-weight: 500;
   color: white;
@@ -80,7 +79,7 @@ section {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 600;
   margin-left: -110px;
-  margin-top: 0rem;
+  margin-top: -0.3rem;
 }
 
 p {
@@ -90,8 +89,7 @@ p {
   font-weight: 500;
   letter-spacing: 0.44px;
   word-wrap: break-word;
-  margin-top: -10px;
-  margin-top: -1.2rem; /* Atur margin atas menjadi 0 */
+  margin-top: -1px; /* Tambahkan margin atas */
 }
 
 .social-login {
@@ -181,7 +179,7 @@ label {
 
 input {
   padding: 0.7rem;
-  margin-bottom: 1rem;
+  margin-bottom: -1rem;
   border-radius: 5px;
   background-color: #222436;
   color: #fff;

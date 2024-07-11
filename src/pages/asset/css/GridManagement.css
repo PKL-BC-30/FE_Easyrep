@@ -1,29 +1,117 @@
-/* GridManagement.css */
+.page-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
 
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-left: 180px;
+  overflow-y: auto;
+}
+
+.grid-wrapper {
+  width: calc(100% - 290px);
+  height: 80vh;
+  overflow: auto;
+  padding: 20px;
+}
+
+/* Custom style for AG Grid */
+.ag-theme-alpine {
+  --ag-background-color: #222436;
+  --ag-odd-row-background-color: #222436;
+  --ag-header-background-color: #222436;
+  --ag-foreground-color: white; /* Optional: For text color */
+}
+
+.role-dropdown {
+  width: 40%;
+  padding: 5px 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #8a2be2;
+  color: #fff;
+}
+
+/* Action buttons */
 .action-buttons {
   display: flex;
-  gap: 20px;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .action-button {
-  padding: 2px; /* Mengatur padding agar sesuai dengan lebar kolom */
+  padding: -6px 10px; /* Mengurangi padding vertikal dan sedikit mengurangi padding horizontal */
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 12px; /* Mengatur ukuran font */
-  width: 50%; /* Memastikan tombol mengambil lebar penuh kolom */
-  box-sizing: border-box; /* Menghitung padding dan border dalam lebar elemen */
-}
-.update-button {
+  font-size: 10px;
+  width: 60px; /* Tetapkan lebar agar konsisten */
+  text-align: center;
   background-color: #4c5caf;
   color: white;
-}
-
-.delete-button {
-  background-color: #f44336;
-  color: white;
+  transition: opacity 0.3s ease;
 }
 
 .action-button:hover {
   opacity: 0.8;
+}
+
+.delete-button {
+  background-color: #f44336;
+}
+
+/* Sidebar styling */
+#sidebar {
+  width: 280px; 
+  background-color: #060714;
+  color: #fbfbfb;
+  z-index: 1000;
+  overflow-x: hidden;
+  transition: width 0.3s ease;
+}
+
+#sidebar .side-menu {
+  margin-top: 20px;
+  list-style-type: none;
+  padding: 0;
+}
+
+#sidebar .side-menu li {
+  margin-bottom: 10px;
+}
+
+#sidebar .side-menu li a {
+  display: block;
+  padding: 12px;
+  border-radius: 10px;
+  color: #fbfbfb;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+#sidebar .side-menu li a:hover {
+  background-color: #342e37;
+}
+
+#sidebar .side-menu li.active a {
+  background-color: #342e37;
+}
+
+#sidebar .side-menu li a .bx {
+  margin-right: 10px;
+}
+
+#sidebar .side-menu li a.logout {
+  color: #db504a;
+  margin-top: auto;
+}
+
+#sidebar .side-menu li a.logout:hover {
+  background-color: #342e37;
 }
