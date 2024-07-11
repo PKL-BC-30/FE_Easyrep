@@ -5,7 +5,7 @@ import './asset/css/GridPage.css'
 const GridPage: Component = () => {
   return (
     <div>
-      <h1>AG Grid Page</h1>
+      <h1>User List</h1>
       <GridComponent />
     </div>
   );

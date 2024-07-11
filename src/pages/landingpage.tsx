@@ -4,6 +4,9 @@ import "./asset/css/landingpage.css";
 
 export default function LandingPage() {
   const [loggedInUser, setLoggedInUser] = createSignal("");
+  const [fileName, setFileName] = createSignal("Upload Lampiran (Max 2 MB)");
+  const [showPopup, setShowPopup] = createSignal(false);
+  const [showLoginPopup, setShowLoginPopup] = createSignal(false); // State to control login warning popup
 
   onMount(() => {
     const users = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -15,6 +18,32 @@ export default function LandingPage() {
   const handleLogout = () => {
     localStorage.removeItem("loggedInUser");
     setLoggedInUser("");
+  };
+
+  const handleFileChange = (event: Event) => {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      setFileName(input.files[0].name);
+    } else {
+      setFileName("Upload Lampiran (Max 2 MB)");
+    }
+  };
+
+  const handleSubmit = (event: Event) => {
+    event.preventDefault();
+    if (!loggedInUser()) {
+      // Show login warning popup if user is not logged in
+      setShowLoginPopup(true);
+      setTimeout(() => {
+        setShowLoginPopup(false);
+      }, 3000);
+    } else {
+      // Proceed with report submission logic
+      setShowPopup(true);
+      setTimeout(() => {
+        setShowPopup(false);
+      }, 3000);
+    }
   };
 
   return (
@@ -80,17 +109,28 @@ export default function LandingPage() {
               </a>
             </p>
           </div>
-          <form action="#" method="post" enctype="multipart/form-data">
+          <form action="#" method="post" enctype="multipart/form-data" onSubmit={handleSubmit}>
             <input type="text" placeholder="Ketikkan judul laporanmu disini!" required />
             <textarea placeholder="Ketikkan isi laporan Anda" rows="5" required></textarea>
             <input type="date" placeholder="Pilih tanggal kejadian" required />
             <input type="text" placeholder="Ketik lokasi kejadian" required />
             <div class="file-upload">
-              <input type="file" id="file" class="file-input" accept=".jpg,.jpeg,.png,.pdf" required />
-              <label for="file">Upload Lampiran (Max 2 MB)</label>
+              <input type="file" id="file" class="file-input" accept=".jpg,.jpeg,.png,.pdf" required onChange={handleFileChange} />
+              <label for="file">{fileName()}</label>
             </div>
             <button type="submit">Lapor Sekarang!</button>
           </form>
+          {showPopup() && (
+            <div class="popup">
+              <img src="src\pages\asset\img\centangg.png" alt="Check" class="check-icon" />
+              <p>Laporan Anda akan segera diproses</p>
+            </div>
+          )}
+          {showLoginPopup() && (
+            <div class="popup warning">
+              <p>Silahkan login terlebih dahulu untuk dapat melaporkan.</p>
+            </div>
+          )}
         </div>
       </div>
       <div class="section__container feature__container" id="tatacara">
