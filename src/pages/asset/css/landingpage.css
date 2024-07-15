@@ -264,6 +264,7 @@ button[type="submit"]:hover {
   font-family: "Plus Jakarta Sans", sans-serif;
   color: rgb(228, 228, 228); 
   margin-top: 20px;
+  text-align: center;
 }
 
 .section__subheader {
@@ -273,6 +274,7 @@ button[type="submit"]:hover {
   font-weight: 700;
   margin-top: 30px;
   margin-bottom: -20px;
+  text-align: center;
 }
 
 .break {

@@ -4,15 +4,16 @@ import "./asset/css/tentang.css";
 export default function LandingPage() {
   const [loggedInUser, setLoggedInUser] = createSignal("");
 
+
   onMount(() => {
-    const users = JSON.parse(localStorage.getItem("loggedInUser"));
-    if (users) {
-      setLoggedInUser(users);
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    if (user) {
+      setLoggedInUser(user.username);
     }
   });
 
   const handleLogout = () => {
-    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("currentUser");
     setLoggedInUser("");
   };
 
@@ -24,7 +25,7 @@ export default function LandingPage() {
         </div>
         <ul class="nav-links">
           <li>
-            <a href="#home">Beranda</a>
+            <a href="http://localhost:3000/landingpage">Beranda</a>
           </li>
           <li>
             <a href="http://localhost:3000/tentang">Tentang</a>
@@ -107,13 +108,13 @@ export default function LandingPage() {
               <h3>Tautan</h3>
               <ul>
                 <li>
-                  <a href="#home">Beranda</a>
+                  <a href="./landingpage.tsx">Beranda</a>
                 </li>
                 <li>
                   <a href="#about">Tentang</a>
                 </li>
                 <li>
-                  <a href="#howto">Tata Cara</a>
+                  <a href="#tatacara">Tata Cara</a>
                 </li>
                 <li>
                   <a href="#contact">Kontak</a>

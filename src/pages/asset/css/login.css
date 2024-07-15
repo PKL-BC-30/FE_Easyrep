@@ -29,9 +29,9 @@ section {
 .image-containerr {
   flex: 1;
   background-image: url("../img/gambar-login.png");
-  background-size: contain; /* Mengatur gambar agar sesuai dengan kontainer tanpa memotong */
-  background-repeat: no-repeat; /* Menghindari pengulangan gambar */
-  background-position: center; /* Menyelaraskan gambar di tengah */
+  background-size: contain; 
+  background-repeat: no-repeat; 
+  background-position: center; 
   display: flex;
   flex-direction: column;
   justify-content: center;

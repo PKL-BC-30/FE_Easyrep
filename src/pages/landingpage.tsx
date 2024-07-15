@@ -6,22 +6,22 @@ export default function LandingPage() {
   const [loggedInUser, setLoggedInUser] = createSignal("");
   const [fileName, setFileName] = createSignal("Upload Lampiran (Max 2 MB)");
   const [showPopup, setShowPopup] = createSignal(false);
-  const [showLoginPopup, setShowLoginPopup] = createSignal(false); // State to control login warning popup
+  const [showLoginPopup, setShowLoginPopup] = createSignal(false);
 
   onMount(() => {
-    const users = JSON.parse(localStorage.getItem("loggedInUser"));
-    if (users) {
-      setLoggedInUser(users);
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    if (user) {
+      setLoggedInUser(user.username);
     }
   });
 
   const handleLogout = () => {
-    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("currentUser");
     setLoggedInUser("");
   };
 
-  const handleFileChange = (event: Event) => {
-    const input = event.target as HTMLInputElement;
+  const handleFileChange = (event) => {
+    const input = event.target;
     if (input.files && input.files.length > 0) {
       setFileName(input.files[0].name);
     } else {
@@ -133,7 +133,7 @@ export default function LandingPage() {
           )}
         </div>
       </div>
-      <div class="section__container feature__container" id="tatacara">
+      <div class="section_container feature_container" id="tatacara">
         <h3 class="section__subheader">Langkah-langkah pelaporan</h3>
         <h2 class="section__header">
           Berikut ini merupakan tata cara melapor melalui <span class="break">website ini</span>
