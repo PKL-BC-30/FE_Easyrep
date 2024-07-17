@@ -3,13 +3,13 @@ import { render } from "solid-js/web";
 import "./asset/css/landingpage.css";
 
 export default function LandingPage() {
-  const [loggedInUser, setLoggedInUser] = createSignal("");
-  const [fileName, setFileName] = createSignal("Upload Lampiran (Max 2 MB)");
+  const [loggedInUser, setLoggedInUser] = createSignal<string | null>(null);
+  const [fileName, setFileName] = createSignal("Upload Lampiran (Max 10 MB)");
   const [showPopup, setShowPopup] = createSignal(false);
   const [showLoginPopup, setShowLoginPopup] = createSignal(false);
 
   onMount(() => {
-    const user = JSON.parse(localStorage.getItem("currentUser"));
+    const user = JSON.parse(localStorage.getItem("currentUser") || "null");
     if (user) {
       setLoggedInUser(user.username);
     }
@@ -17,31 +17,31 @@ export default function LandingPage() {
 
   const handleLogout = () => {
     localStorage.removeItem("currentUser");
-    setLoggedInUser("");
+    setLoggedInUser(null);
   };
 
-  const handleFileChange = (event) => {
-    const input = event.target;
+  const handleFileChange = (event: Event) => {
+    const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       setFileName(input.files[0].name);
     } else {
-      setFileName("Upload Lampiran (Max 2 MB)");
+      setFileName("Upload Lampiran (Max 10 MB)");
     }
   };
 
   const handleSubmit = (event: Event) => {
     event.preventDefault();
     if (!loggedInUser()) {
-      // Show login warning popup if user is not logged in
       setShowLoginPopup(true);
       setTimeout(() => {
         setShowLoginPopup(false);
       }, 3000);
     } else {
-      // Proceed with report submission logic
       setShowPopup(true);
       setTimeout(() => {
         setShowPopup(false);
+        (event.target as HTMLFormElement).reset();
+        setFileName("Upload Lampiran (Max 10 MB)");
       }, 3000);
     }
   };
@@ -92,7 +92,7 @@ export default function LandingPage() {
             Laporan Anda, <span>Aksi Kami</span>
           </h1>
           <p>Easyrep adalah solusi cepat dan mudah untuk melaporkan masalah infrastruktur di lingkungan Anda.</p>
-          <a href="#get-started" class="btn">
+          <a href="#" class="btn">
             Get Started
           </a>
         </div>
@@ -122,7 +122,7 @@ export default function LandingPage() {
           </form>
           {showPopup() && (
             <div class="popup">
-              <img src="src\pages\asset\img\centangg.png" alt="Check" class="check-icon" />
+              <img src="src/pages/asset/img/centangg.png" alt="Check" class="check-icon" />
               <p>Laporan Anda akan segera diproses</p>
             </div>
           )}
@@ -147,18 +147,18 @@ export default function LandingPage() {
         </div>
         <div class="feature__card">
           <div>.02</div>
-          <h4>Tulis Laporan</h4>
-          <p>Sampaikan keluhan atau aspirasi Anda dengan jelas, sertakan detail seperti waktu, lokasi, dan bukti pendukung.</p>
+          <h4>Sampaikan</h4>
+          <p>Setelah laporan Anda lengkap, klik tombol 'Lapor Sekarang' untuk mengirimkan laporan Anda kepada kami.</p>
         </div>
         <div class="feature__card">
           <div>.03</div>
-          <h4>Tulis Laporan</h4>
-          <p>Sampaikan keluhan atau aspirasi Anda dengan jelas, sertakan detail seperti waktu, lokasi, dan bukti pendukung.</p>
+          <h4>Tunggu Tanggapan</h4>
+          <p>Tunggu tim kami untuk memproses laporan Anda. Anda akan menerima pemberitahuan mengenai status laporan Anda.</p>
         </div>
         <div class="feature__card">
           <div>.04</div>
-          <h4>Tulis Laporan</h4>
-          <p>Sampaikan keluhan atau aspirasi Anda dengan jelas, sertakan detail seperti waktu, lokasi, dan bukti pendukung.</p>
+          <h4>Follow Up</h4>
+          <p>Anda dapat mengikuti perkembangan laporan Anda melalui situs ini atau menghubungi kami langsung.</p>
         </div>
       </div>
       <div class="contact-container" id="contact">
@@ -205,7 +205,6 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* Footer */}
       <footer class="footer">
         <div class="footer-top">
           <div class="footer-logo">
