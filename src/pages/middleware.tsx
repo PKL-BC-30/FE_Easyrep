@@ -10,7 +10,7 @@ const RequireAdmin = (props: RequireAdminProps) => {
 
   createEffect(() => {
     const user = JSON.parse(localStorage.getItem("currentUser") || "{}");
-    if (!user || user.role !== "admin") {
+    if (!user || user.role !== "Admin") {
       navigate("/landingpage");
     }
   });

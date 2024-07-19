@@ -1,6 +1,9 @@
 import { createSignal, onMount } from "solid-js";
 import { render } from "solid-js/web";
-import "./asset/css/landingpage.css";
+import "./landingpage.css";
+import { FaSolidLocationDot } from "solid-icons/fa";
+import { BsTelephoneFill } from "solid-icons/bs";
+import { AiOutlineMail } from 'solid-icons/ai'
 
 export default function LandingPage() {
   const [loggedInUser, setLoggedInUser] = createSignal<string | null>(null);
@@ -50,20 +53,20 @@ export default function LandingPage() {
     <section class="landing-page">
       <nav class="navbar">
         <div class="logo">
-          <img src="src/pages/asset/img/logoweb.png" alt="Logoweb" />
+          <img src="public\img\logoweb.png" alt="Logoweb" />
         </div>
         <ul class="nav-links">
           <li>
             <a href="#home">Beranda</a>
           </li>
           <li>
-            <a href="http://localhost:3000/tentang">Tentang</a>
-          </li>
-          <li>
             <a href="#tatacara">Tata Cara</a>
           </li>
           <li>
             <a href="#contact">Kontak</a>
+          </li>
+          <li>
+            <a href="/tentang">Tentang</a>
           </li>
         </ul>
         <div class="auth-buttons">
@@ -76,10 +79,10 @@ export default function LandingPage() {
             </>
           ) : (
             <>
-              <a href="http://localhost:3000/about" class="login">
+              <a href="/login" class="login">
                 Login
               </a>
-              <a href="http://localhost:3000/" class="register">
+              <a href="/" class="register">
                 Register
               </a>
             </>
@@ -96,10 +99,10 @@ export default function LandingPage() {
             Get Started
           </a>
         </div>
-        <img src="src/pages/asset/img/ilustrasi2.png" alt="Illustration" class="header-image" />
+        <img src="public\img\ilustrasi2.png" alt="Illustration" class="header-image" />
       </header>
       <div class="form-page">
-        <div class="form-container">
+        <div class="form-containeer">
           <div class="form-header">
             <h2>Sampaikan Laporan Anda</h2>
             <p>
@@ -122,7 +125,7 @@ export default function LandingPage() {
           </form>
           {showPopup() && (
             <div class="popup">
-              <img src="src/pages/asset/img/centangg.png" alt="Check" class="check-icon" />
+              <img src="public\img\centangg.png" alt="Check" class="check-icon" />
               <p>Laporan Anda akan segera diproses</p>
             </div>
           )}
@@ -164,7 +167,9 @@ export default function LandingPage() {
       <div class="contact-container" id="contact">
         <div class="contact-info">
           <div class="info-item">
-            <div class="icon">📍</div>
+            <div class="icon">
+              <FaSolidLocationDot size={24} color="#fff" />
+            </div>
             <div class="details">
               <h3>Alamat</h3>
               <p>
@@ -175,7 +180,9 @@ export default function LandingPage() {
             </div>
           </div>
           <div class="info-item">
-            <div class="icon">📞</div>
+            <div class="icon">
+              <BsTelephoneFill size={24} color="#fff" />
+            </div>
             <div class="details">
               <h3>Phone</h3>
               <p>
@@ -186,7 +193,9 @@ export default function LandingPage() {
             </div>
           </div>
           <div class="info-item">
-            <div class="icon">📧</div>
+            <div class="icon">
+              <AiOutlineMail size={24} color="#fff" />
+            </div>
             <div class="details">
               <h3>Email</h3>
               <p>helloeasyrep@gmail.com</p>
@@ -208,7 +217,7 @@ export default function LandingPage() {
       <footer class="footer">
         <div class="footer-top">
           <div class="footer-logo">
-            <img src="src/pages/asset/img/logoweb.png" alt="Logoweb" />
+            <img src="public\img\logoweb.png" alt="Logoweb" />
           </div>
           <div class="footer-content">
             <div class="footer-links">
@@ -218,13 +227,13 @@ export default function LandingPage() {
                   <a href="#home">Beranda</a>
                 </li>
                 <li>
-                  <a href="#about">Tentang</a>
-                </li>
-                <li>
-                  <a href="#howto">Tata Cara</a>
+                  <a href="#tatacara">Tata Cara</a>
                 </li>
                 <li>
                   <a href="#contact">Kontak</a>
+                </li>
+                <li>
+                  <a href="/tentang">Tentang</a>
                 </li>
               </ul>
             </div>
@@ -241,17 +250,17 @@ export default function LandingPage() {
               <ul>
                 <li>
                   <a href="#">
-                    <img src="src/pages/asset/img/facebook-icon.png" alt="Facebook" />
+                    <img src="public\img\facebook-icon.png" alt="Facebook" />
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <img src="src/pages/asset/img/twitter-icon.png" alt="Twitter" />
+                    <img src="public\img\twitter-icon.png" alt="Twitter" />
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <img src="src/pages/asset/img/instagram-icon.png" alt="Instagram" />
+                    <img src="public\img\instagram-icon.png" alt="Instagram" />
                   </a>
                 </li>
               </ul>

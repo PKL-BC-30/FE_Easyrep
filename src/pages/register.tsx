@@ -1,6 +1,6 @@
 import { createSignal } from "solid-js";
 import CryptoJS from "crypto-js";
-import "./asset/css/Register.css";
+import "./register.css";
 
 export default function Register() {
   const [username, setUsername] = createSignal("");
@@ -11,28 +11,23 @@ export default function Register() {
   const handleRegister = (e) => {
     e.preventDefault();
 
-    // Hash password sebelum disimpan
     const hashedPassword = CryptoJS.SHA256(password()).toString();
     const userData = {
       username: username(),
       email: email(),
-      password: hashedPassword,  // Pastikan ini di-hash
+      password: hashedPassword,
     };
 
-    // Ambil data pengguna yang sudah ada di localStorage
     let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    // Periksa apakah email sudah ada
     const emailExists = users.some((user) => user.email === email());
     if (emailExists) {
       alert("Email sudah terdaftar. Silakan gunakan email lain.");
       return;
     }
 
-    // Tambahkan pengguna baru ke array
     users.push(userData);
 
-    // Simpan kembali ke localStorage
     localStorage.setItem("users", JSON.stringify(users));
     alert("Data telah disimpan ke localStorage!");
 
@@ -41,26 +36,25 @@ export default function Register() {
     setPassword("");
     setTermscb(false);
 
-    // Redirect to login page
     setTimeout(() => {
-      window.location.href = "/about"; // Ganti dengan path menuju halaman login Anda
+      window.location.href = "/login";
     }, 1000);
   };
 
   return (
     <section>
       <div class="container">
-        <div class="form-container">
-          <img class="navbarr" src="src/pages/asset/img/logoweb.png" alt="logo" />
+        <div class="form-containerr">
+          <img class="navbarrr" src="public\img\logoweb.png" alt="logo" />
           <h1>Buat akun Anda!</h1>
-          <p>Selamat datang! Silahkan masukkan informasi Anda</p>
+          <p class="desc">Selamat datang! Silahkan masukkan informasi Anda</p>
           <div class="social-login">
             <button class="google">
-              <img src="src\pages\asset\img\google.png" alt="google logo" />
+              <img src="public\img\google.png" alt="google logo" />
               Google
             </button>
             <button class="facebook">
-              <img src="src/pages/asset/img/fb.png" alt="facebook logo" />
+              <img src="public\img\fb.png" alt="facebook logo" />
               Facebook
             </button>
           </div>
@@ -85,8 +79,10 @@ export default function Register() {
               <label for="password"></label>
               <input type="password" id="password" value={password()} onInput={(e) => setPassword(e.target.value)} placeholder="Masukkan password Anda" required />
             </div>
-            <div class="checkbox-container">
-              <input type="checkbox" id="terms" checked={terms()} onChange={(e) => setTermscb(e.target.checked)} required />
+            <div class="checkbox-containerr">
+              <div class="checkboxx">
+                <input type="checkbox" id="terms" checked={terms()} onChange={(e) => setTermscb(e.target.checked)} required />
+              </div>
               <label for="terms">
                 Saya telah membaca dan menyetujui{" "}
                 <span style="color: #AE8EF1;">
@@ -99,7 +95,7 @@ export default function Register() {
             </button>
           </form>
           <div class="login-link">
-            Sudah punya akun? <a href="/about">Masuk sekarang!</a>
+            Sudah punya akun? <a href="/login"> Masuk sekarang!</a>
           </div>
         </div>
         <div class="image-container">

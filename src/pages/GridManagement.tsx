@@ -2,7 +2,7 @@ import { createSignal, onMount } from "solid-js";
 import AgGridSolid from "ag-grid-solid";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import "../pages/asset/css/GridManagement.css";
+import "./gridmanagament.css";
 import Sidebar from "./sidebar";
 import "boxicons/css/boxicons.min.css";
 

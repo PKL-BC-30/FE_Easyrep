@@ -4,7 +4,7 @@ import type { AboutDataType } from "./about.data";
 import { useNavigate } from "@solidjs/router";
 import { createSignal } from "solid-js";
 import CryptoJS from "crypto-js";
-import "./asset/css/login.css"
+import "./login.css"
 
 const Login = () => {
   const [email, setEmail] = createSignal("");
@@ -26,7 +26,7 @@ const Login = () => {
     if (user.password === hashedPassword) {
       alert("Login sukses");
       localStorage.setItem("currentUser", JSON.stringify(user));
-      if (user.role === "admin") {
+      if (user.role === "Admin") {
         navigate("/useradmin");
       } else {
         navigate("/landingpage");
@@ -39,24 +39,24 @@ const Login = () => {
   return (
     <section>
       <div class="container">
-        <div class="form-container">
-          <img class="navbarr" src="src/pages/asset/img/logoweb.png" alt="logo" />
+        <div class="form-containner">
+          <img class="navbarr" src="public\img\logoweb.png" alt="logo" />
           <h2>Masuk ke akun Anda</h2>
           <p>Selamat datang kembali! Pilih metode untuk login:</p>
           <div class="social-login">
             <button class="google">
-              <img src="src/pages/asset/img/google.png" alt="google logo" />
+              <img src="public\img\google.png" alt="google logo" />
               Google
             </button>
             <button class="facebook">
-              <img src="src/pages/asset/img/fb.png" alt="facebook logo" />
+              <img src="public\img\fb.png" alt="facebook logo" />
               Facebook
             </button>
           </div>
           <div class="separator">
-            <div class="separator-line"></div>
+            <div class="separator-linee"></div>
             <div class="separator-text">ATAU</div>
-            <div class="separator-line"></div>
+            <div class="separator-linee"></div>
           </div>
           <form onSubmit={handleSubmit}>
             <div>
@@ -69,13 +69,13 @@ const Login = () => {
               <label for="password"></label>
               <input type="password" id="password" value={password()} onInput={(e) => setPassword(e.target.value)} placeholder="Masukkan password Anda" required />
             </div>
-            <div class="forgot-password">Lupa password?</div>
+            <div class="forgot-passwordd">Lupa password?</div>
             <button type="submit" class="submit-btn">
               Masuk
             </button>
           </form>
           <div class="login-link">
-            Belum punya akun? <a href="http://localhost:3000/">Buat sekarang!</a>
+            Belum punya akun? <a href="/">Buat sekarang!</a>
           </div>
         </div>
         <div class="image-containerr">

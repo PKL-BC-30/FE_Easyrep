@@ -1,5 +1,5 @@
 import { createSignal, onMount } from "solid-js";
-import "./asset/css/tentang.css";
+import "./tentang.css";
 
 export default function LandingPage() {
   const [loggedInUser, setLoggedInUser] = createSignal("");
@@ -21,20 +21,20 @@ export default function LandingPage() {
     <section class="landing-page">
       <nav class="navbar">
         <div class="logo">
-          <img src="src/pages/asset/img/logoweb.png" alt="Logoweb" />
+          <img src="public\img\logoweb.png" alt="Logoweb" />
         </div>
         <ul class="nav-links">
           <li>
-            <a href="http://localhost:3000/landingpage">Beranda</a>
+            <a href="/landingpage">Beranda</a>
           </li>
           <li>
-            <a href="http://localhost:3000/tentang">Tentang</a>
+            <a href="/landingpage#tatacara">Tata Cara</a>
           </li>
           <li>
-            <a href="#tatacara">Tata Cara</a>
+            <a href="/landingpage#contact">Kontak</a>
           </li>
           <li>
-            <a href="#contact">Kontak</a>
+            <a href="/tentang">Tentang</a>
           </li>
         </ul>
         <div class="auth-buttons">
@@ -47,10 +47,10 @@ export default function LandingPage() {
             </>
           ) : (
             <>
-              <a href="http://localhost:3000/about" class="login">
+              <a href="/login" class="login">
                 Login
               </a>
-              <a href="http://localhost:3000/" class="register">
+              <a href="/" class="register">
                 Register
               </a>
             </>
@@ -101,7 +101,7 @@ export default function LandingPage() {
       <footer class="footer">
         <div class="footer-top">
           <div class="footer-logo">
-            <img src="src/pages/asset/img/logoweb.png" alt="Logoweb" />
+            <img src="public\img\logoweb.png" alt="Logoweb" />
           </div>
           <div class="footer-content">
             <div class="footer-links">
@@ -134,17 +134,17 @@ export default function LandingPage() {
               <ul>
                 <li>
                   <a href="#">
-                    <img src="src/pages/asset/img/facebook-icon.png" alt="Facebook" />
+                    <img src="public\img\facebook-icon.png" alt="Facebook" />
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <img src="src/pages/asset/img/twitter-icon.png" alt="Twitter" />
+                    <img src="public\img\twitter-icon.png" alt="Twitter" />
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <img src="src/pages/asset/img/instagram-icon.png" alt="Instagram" />
+                    <img src="public\img\instagram-icon.png" alt="Instagram" />
                   </a>
                 </li>
               </ul>

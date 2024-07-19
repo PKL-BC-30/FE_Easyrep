@@ -2,7 +2,7 @@ import { createSignal, onMount } from "solid-js";
 import AgGridSolid from "ag-grid-solid";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import "./asset/css/sidebar.css";
+import "./sidebar.css";
 import "boxicons/css/boxicons.min.css";
 
 const Sidebar = () => {
@@ -37,7 +37,7 @@ const Sidebar = () => {
       <ul class="side-menu">
         {Auth.check && (
           <li class="logout-item">
-            <a href="/about" class="logout">
+            <a href="/login" class="logout">
               <i class="bx bxs-log-out-circle"></i>
               <span class="text">Logout</span>
             </a>

@@ -2,17 +2,12 @@ import { createSignal, onMount } from "solid-js";
 import AgGridSolid from "ag-grid-solid";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import "./asset/css/GridComponent.css";
+import "./gridcomponent.css";
 import Sidebar from "./sidebar";
 import "boxicons/css/boxicons.min.css";
 
 const GridComponent = () => {
   const [rowData, setRowData] = createSignal<any[]>([]);
-
-  onMount(() => {
-    loadUserData();
-    window.addEventListener("storage", handleStorageChange);
-  });
 
   const loadUserData = () => {
     const savedData = localStorage.getItem("users");
@@ -25,6 +20,13 @@ const GridComponent = () => {
     }
   };
 
+
+  onMount(() => {
+    loadUserData();
+    window.addEventListener("storage", handleStorageChange);
+  });
+
+  
   const handleStorageChange = () => {
     loadUserData();
   };
