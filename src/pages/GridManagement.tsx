@@ -5,9 +5,14 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import "./gridmanagament.css";
 import Sidebar from "./sidebar";
 import "boxicons/css/boxicons.min.css";
+import { FiAlertCircle } from "solid-icons/fi";
 
 const GridManagement = () => {
   const [rowData, setRowData] = createSignal<any[]>([]);
+  const [filteredData, setFilteredData] = createSignal<any[]>([]);
+  const [searchTerm, setSearchTerm] = createSignal("");
+  const [showDeletePopup, setShowDeletePopup] = createSignal(false);
+  const [userToDelete, setUserToDelete] = createSignal<any>(null);
 
   onMount(() => {
     loadUserData();
@@ -22,6 +27,7 @@ const GridManagement = () => {
         role: user.role || "User", // Default role to "User" if not specified
       }));
       setRowData(parsedData);
+      setFilteredData(parsedData);
     }
   };
 
@@ -31,8 +37,20 @@ const GridManagement = () => {
 
   const updateRowData = (newData: any[]) => {
     setRowData(newData);
+    setFilteredData(newData);
     localStorage.setItem("users", JSON.stringify(newData));
     window.dispatchEvent(new Event("storage"));
+  };
+
+  const handleSearch = (e: Event) => {
+    const searchTerm = (e.target as HTMLInputElement).value;
+    setSearchTerm(searchTerm);
+    if (searchTerm === "") {
+      setFilteredData(rowData());
+    } else {
+      const filtered = rowData().filter((user) => Object.values(user).some((val) => String(val).toLowerCase().includes(searchTerm.toLowerCase())));
+      setFilteredData(filtered);
+    }
   };
 
   const columnDefs = [
@@ -62,7 +80,7 @@ const GridManagement = () => {
         const deleteButton = document.createElement("button");
         deleteButton.innerText = "Delete";
         deleteButton.classList.add("action-button", "delete-button");
-        deleteButton.addEventListener("click", () => deleteUser(params.data));
+        deleteButton.addEventListener("click", () => confirmDeleteUser(params.data));
 
         container.appendChild(updateButton);
         container.appendChild(deleteButton);
@@ -84,20 +102,55 @@ const GridManagement = () => {
     updateRowData(updatedData);
   };
 
-  const deleteUser = (userToDelete: any) => {
-    const updatedData = rowData().filter((user) => user.email !== userToDelete.email);
-    updateRowData(updatedData);
+  const confirmDeleteUser = (user: any) => {
+    setUserToDelete(user);
+    setShowDeletePopup(true);
+  };
+
+  const deleteUser = () => {
+    const userToDeleteValue = userToDelete();
+    if (userToDeleteValue) {
+      const updatedData = rowData().filter((user) => user.email !== userToDeleteValue.email);
+      updateRowData(updatedData);
+      setShowDeletePopup(false);
+    }
+  };
+
+  const closePopup = () => {
+    setShowDeletePopup(false);
+    setUserToDelete(null);
   };
 
   return (
     <div class="page-container">
       <Sidebar />
-      <div class="content">
+      <div class="content-g">
         <h1>User Management</h1>
+        <div class="top-bar">
+          <input type="text" placeholder="Search..." value={searchTerm()} onInput={handleSearch} class="search-inputt" />
+        </div>
         <div class="grid-wrapper ag-theme-alpine">
-          {rowData().length > 0 ? <AgGridSolid columnDefs={columnDefs} rowData={rowData()} defaultColDef={defaultColDef} onCellValueChanged={(event: any) => updateUser(event)} /> : <p>Loading...</p>}
+          {filteredData().length > 0 ? <AgGridSolid columnDefs={columnDefs} rowData={filteredData()} defaultColDef={defaultColDef} onCellValueChanged={(event: any) => updateUser(event)} /> : <p>Loading...</p>}
         </div>
       </div>
+      {showDeletePopup() && (
+        <div class="popup-overlay">
+          <div class="popup">
+            <h2>
+              <FiAlertCircle size={80} style={{ color: "red" }} />
+            </h2>
+            <p>Are you sure you want to delete this user?</p>
+            <div class="popup-buttons">
+              <button onClick={deleteUser} class="popup-button confirm">
+                Yes
+              </button>
+              <button onClick={closePopup} class="popup-button cancel">
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -72,7 +72,7 @@ const GridComponent = () => {
   return (
     <div class="page-container">
       <Sidebar />
-      <div class="content">
+      <div class="ccontent">
         <h1>User List</h1> 
         <div class="grid-wrapper ag-theme-alpine">
           {rowData().length > 0 ? <AgGridSolid columnDefs={columnDefs} rowData={rowData()} defaultColDef={defaultColDef} onCellValueChanged={(event: any) => updateUser(event)} /> : <p>Loading...</p>}
