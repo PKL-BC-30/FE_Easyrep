@@ -1,5 +1,4 @@
 import { createSignal } from "solid-js";
-import CryptoJS from "crypto-js";
 import "./register.css";
 
 export default function Register() {
@@ -11,11 +10,11 @@ export default function Register() {
   const handleRegister = (e) => {
     e.preventDefault();
 
-    const hashedPassword = CryptoJS.SHA256(password()).toString();
+    // Store password as plaintext
     const userData = {
       username: username(),
       email: email(),
-      password: hashedPassword,
+      password: password(),
     };
 
     let users = JSON.parse(localStorage.getItem("users")) || [];
@@ -45,16 +44,16 @@ export default function Register() {
     <section>
       <div class="container">
         <div class="form-containerr">
-          <img class="navbarrr" src="public\img\logoweb.png" alt="logo" />
+          <img class="navbarrr" src="public/img/logoweb.png" alt="logo" />
           <h1>Buat akun Anda!</h1>
           <p class="desc">Selamat datang! Silahkan masukkan informasi Anda</p>
           <div class="social-login">
             <button class="google">
-              <img src="public\img\google.png" alt="google logo" />
+              <img src="public/img/google.png" alt="google logo" />
               Google
             </button>
             <button class="facebook">
-              <img src="public\img\fb.png" alt="facebook logo" />
+              <img src="public/img/fb.png" alt="facebook logo" />
               Facebook
             </button>
           </div>

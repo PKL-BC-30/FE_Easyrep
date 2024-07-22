@@ -1,0 +1,58 @@
+/* editdata.css */
+.editdata-container {
+  padding: 20px;
+}
+
+.editdata-container h1 {
+  font-size: 26px;
+  margin-top: 20px;
+  margin-left: -260px;
+}
+
+.editdata-container form {
+  width: 600px;
+  margin-left: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.editdata-container label {
+  margin-bottom: 10px;
+}
+
+.editdata-container select {
+  border-radius: 6px;
+  background-color: #3e3e3e;
+  margin-left: 10px;
+}
+
+.editdata-container input,
+.editdata-container select {
+  margin-top: 5px;
+  padding: 8px;
+  border: 1px solid #3e3e3e;
+}
+
+.editdata-container .button-group {
+  display: flex;
+  gap: 10px; /* Optional: adds space between buttons */
+  margin-top: 10px;
+}
+
+.editdata-container button {
+  width: 100px;
+  padding: 10px;
+  border: none;
+  color: #fff;
+  background-color: #ae8ef1;
+  cursor: pointer;
+}
+
+.editdata-container button.cancel {
+  width: 100px;
+  padding: 10px;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #3e3e3e;
+  cursor: pointer;
+}

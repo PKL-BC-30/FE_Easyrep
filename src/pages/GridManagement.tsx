@@ -1,4 +1,5 @@
 import { createSignal, onMount } from "solid-js";
+import { useNavigate } from "@solidjs/router";
 import AgGridSolid from "ag-grid-solid";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -13,6 +14,7 @@ const GridManagement = () => {
   const [searchTerm, setSearchTerm] = createSignal("");
   const [showDeletePopup, setShowDeletePopup] = createSignal(false);
   const [userToDelete, setUserToDelete] = createSignal<any>(null);
+  const navigate = useNavigate();
 
   onMount(() => {
     loadUserData();
@@ -54,8 +56,8 @@ const GridManagement = () => {
   };
 
   const columnDefs = [
-    { field: "username", headerName: "Username", editable: true },
-    { field: "email", headerName: "Email", editable: true },
+    { field: "username", headerName: "Username", editable: false },
+    { field: "email", headerName: "Email", editable: false },
     { field: "password", headerName: "Password", editable: false },
     {
       headerName: "Role",
@@ -73,9 +75,9 @@ const GridManagement = () => {
         container.classList.add("action-buttons");
 
         const updateButton = document.createElement("button");
-        updateButton.innerText = "Update";
+        updateButton.innerText = "Edit";
         updateButton.classList.add("action-button", "update-button");
-        updateButton.addEventListener("click", () => updateUser(params));
+        updateButton.addEventListener("click", () => navigate(`/editdata/${params.data.email}`));
 
         const deleteButton = document.createElement("button");
         deleteButton.innerText = "Delete";
@@ -93,13 +95,6 @@ const GridManagement = () => {
   const defaultColDef = {
     flex: 1,
     minWidth: 150,
-  };
-
-  const updateUser = (params: any) => {
-    console.log("Update user:", params.data);
-    params.api.stopEditing();
-    const updatedData = rowData().map((user) => (user.email === params.data.email ? { ...params.data } : user));
-    updateRowData(updatedData);
   };
 
   const confirmDeleteUser = (user: any) => {
@@ -129,9 +124,7 @@ const GridManagement = () => {
         <div class="top-bar">
           <input type="text" placeholder="Search..." value={searchTerm()} onInput={handleSearch} class="search-inputt" />
         </div>
-        <div class="grid-wrapper ag-theme-alpine">
-          {filteredData().length > 0 ? <AgGridSolid columnDefs={columnDefs} rowData={filteredData()} defaultColDef={defaultColDef} onCellValueChanged={(event: any) => updateUser(event)} /> : <p>Loading...</p>}
-        </div>
+        <div class="grid-wrapper ag-theme-alpine">{filteredData().length > 0 ? <AgGridSolid columnDefs={columnDefs} rowData={filteredData()} defaultColDef={defaultColDef} /> : <p>Loading...</p>}</div>
       </div>
       {showDeletePopup() && (
         <div class="popup-overlay">

@@ -1,4 +1,5 @@
 import { createSignal, onMount } from "solid-js";
+import { useNavigate } from "@solidjs/router";
 import AgGridSolid from "ag-grid-solid";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -8,6 +9,7 @@ import "boxicons/css/boxicons.min.css";
 
 const GridComponent = () => {
   const [rowData, setRowData] = createSignal<any[]>([]);
+  const navigate = useNavigate();
 
   const loadUserData = () => {
     const savedData = localStorage.getItem("users");
@@ -20,13 +22,11 @@ const GridComponent = () => {
     }
   };
 
-
   onMount(() => {
     loadUserData();
     window.addEventListener("storage", handleStorageChange);
   });
 
-  
   const handleStorageChange = () => {
     loadUserData();
   };
@@ -38,8 +38,8 @@ const GridComponent = () => {
   };
 
   const columnDefs = [
-    { field: "username", headerName: "Username", editable: true },
-    { field: "email", headerName: "Email", editable: true },
+    { field: "username", headerName: "Username", editable: false },
+    { field: "email", headerName: "Email", editable: false },
     { field: "password", headerName: "Password", editable: false },
     {
       headerName: "Role",
@@ -48,6 +48,28 @@ const GridComponent = () => {
       cellEditor: "agSelectCellEditor",
       cellEditorParams: {
         values: ["Admin", "User"],
+      },
+    },
+    {
+      headerName: "Actions",
+      cellRenderer: (params: any) => {
+        const container = document.createElement("div");
+        container.classList.add("action-buttons");
+
+        const updateButton = document.createElement("button");
+        updateButton.innerText = "Edit";
+        updateButton.classList.add("action-button", "update-button");
+        updateButton.addEventListener("click", () => navigate(`/editdata/${params.data.email}`));
+
+        const deleteButton = document.createElement("button");
+        deleteButton.innerText = "Delete";
+        deleteButton.classList.add("action-button", "delete-button");
+        deleteButton.addEventListener("click", () => deleteUser(params.data));
+
+        container.appendChild(updateButton);
+        container.appendChild(deleteButton);
+
+        return container;
       },
     },
   ];
@@ -73,7 +95,7 @@ const GridComponent = () => {
     <div class="page-container">
       <Sidebar />
       <div class="ccontent">
-        <h1>User List</h1> 
+        <h1>User List</h1>
         <div class="grid-wrapper ag-theme-alpine">
           {rowData().length > 0 ? <AgGridSolid columnDefs={columnDefs} rowData={rowData()} defaultColDef={defaultColDef} onCellValueChanged={(event: any) => updateUser(event)} /> : <p>Loading...</p>}
         </div>
