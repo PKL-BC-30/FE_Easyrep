@@ -50,28 +50,6 @@ const GridComponent = () => {
         values: ["Admin", "User"],
       },
     },
-    {
-      headerName: "Actions",
-      cellRenderer: (params: any) => {
-        const container = document.createElement("div");
-        container.classList.add("action-buttons");
-
-        const updateButton = document.createElement("button");
-        updateButton.innerText = "Edit";
-        updateButton.classList.add("action-button", "update-button");
-        updateButton.addEventListener("click", () => navigate(`/editdata/${params.data.email}`));
-
-        const deleteButton = document.createElement("button");
-        deleteButton.innerText = "Delete";
-        deleteButton.classList.add("action-button", "delete-button");
-        deleteButton.addEventListener("click", () => deleteUser(params.data));
-
-        container.appendChild(updateButton);
-        container.appendChild(deleteButton);
-
-        return container;
-      },
-    },
   ];
 
   const defaultColDef = {
