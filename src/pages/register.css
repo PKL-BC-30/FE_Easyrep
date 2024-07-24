@@ -165,7 +165,7 @@ input {
 
 .submit-btn {
   padding: 0.75rem;
-  background: linear-gradient(90deg, #6a4bff 31%, #9070f7 64%, #ae8ef1 100%);
+  background: #663b9e;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -182,7 +182,7 @@ input {
 }
 
 .login-link a {
-  color: #805ad5;
+  color: #663b9e;
   text-decoration: none;
 }
 

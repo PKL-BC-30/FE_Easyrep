@@ -155,7 +155,7 @@ form p {
 label {
   margin-bottom: 0.5rem;
   font-size: 20px;
-  color: #a0aec0;
+  color: #663b9e;
 }
 
 input {
@@ -186,7 +186,7 @@ input {
 .submit-btn {
   width: 100%;
   padding: 0.75rem;
-  background: linear-gradient(90deg, #6a4bff 31%, #9070f7 64%, #ae8ef1 100%);
+  background: #663b9e;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -196,7 +196,7 @@ input {
 }
 
 .forgot-passwordd {
-  color: #ae8ef1;
+  color: #663b9e;
   font-size: 14px;
   font-weight: 600;
   margin-right: -80px;
@@ -211,7 +211,7 @@ input {
 }
 
 .login-link a {
-  color: #805ad5;
+  color: #663b9e;
   text-decoration: none;
 }
 
@@ -284,7 +284,7 @@ input {
     border-radius: 5px;
     background-color: #222436;
     color: #b3b3b3;
-    width: 80%; /* Lebar 100% */
+    width: 80%;
     font-size: 14px;
   }
 }

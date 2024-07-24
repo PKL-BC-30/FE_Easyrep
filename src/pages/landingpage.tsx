@@ -1,15 +1,15 @@
 import { createSignal, onMount } from "solid-js";
-import { render } from "solid-js/web";
 import "./landingpage.css";
 import { FaSolidLocationDot } from "solid-icons/fa";
 import { BsTelephoneFill } from "solid-icons/bs";
-import { AiOutlineMail } from 'solid-icons/ai'
+import { AiOutlineMail } from "solid-icons/ai";
 
 export default function LandingPage() {
   const [loggedInUser, setLoggedInUser] = createSignal<string | null>(null);
   const [fileName, setFileName] = createSignal("Upload Lampiran (Max 10 MB)");
   const [showPopup, setShowPopup] = createSignal(false);
   const [showLoginPopup, setShowLoginPopup] = createSignal(false);
+  const [showMessagePopup, setShowMessagePopup] = createSignal(false);
 
   onMount(() => {
     const user = JSON.parse(localStorage.getItem("currentUser") || "null");
@@ -34,6 +34,22 @@ export default function LandingPage() {
 
   const handleSubmit = (event: Event) => {
     event.preventDefault();
+
+    const formData = new FormData(event.target as HTMLFormElement);
+    const newReport = {
+      title: formData.get("title"),
+      description: formData.get("description"),
+      date: formData.get("date"),
+      location: formData.get("location"),
+      fileName: fileName(),
+    };
+
+    const existingReports = JSON.parse(localStorage.getItem("reports") || "[]");
+    existingReports.push(newReport);
+    localStorage.setItem("reports", JSON.stringify(existingReports));
+
+    console.log("New report saved: ", newReport);
+
     if (!loggedInUser()) {
       setShowLoginPopup(true);
       setTimeout(() => {
@@ -49,11 +65,34 @@ export default function LandingPage() {
     }
   };
 
+  const handleContactSubmit = (event: Event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target as HTMLFormElement);
+    const newMessage = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+    };
+
+    const existingMessages = JSON.parse(localStorage.getItem("messages") || "[]");
+    existingMessages.push(newMessage);
+    localStorage.setItem("messages", JSON.stringify(existingMessages));
+
+    console.log("New message saved: ", newMessage);
+
+    setShowMessagePopup(true);
+    setTimeout(() => {
+      setShowMessagePopup(false);
+      (event.target as HTMLFormElement).reset();
+    }, 3000);
+  };
+
   return (
     <section class="landing-page">
       <nav class="navbar">
         <div class="logo">
-          <img src="public\img\logoweb.png" alt="Logoweb" />
+          <img src="public/img/logoweb.png" alt="Logoweb" />
         </div>
         <ul class="nav-links">
           <li>
@@ -67,6 +106,9 @@ export default function LandingPage() {
           </li>
           <li>
             <a href="/tentang">Tentang</a>
+          </li>
+          <li>
+            <a href="/reports">Laporan</a>
           </li>
         </ul>
         <div class="auth-buttons">
@@ -82,7 +124,7 @@ export default function LandingPage() {
               <a href="/login" class="login">
                 Login
               </a>
-              <a href="/" class="register">
+              <a href="/register" class="register">
                 Register
               </a>
             </>
@@ -99,7 +141,7 @@ export default function LandingPage() {
             Get Started
           </a>
         </div>
-        <img src="public\img\ilustrasi2.png" alt="Illustration" class="header-image" />
+        <img src="public/img/ilustrasi2.png" alt="Illustration" class="header-image" />
       </header>
       <div class="form-page">
         <div class="form-containeer">
@@ -113,10 +155,10 @@ export default function LandingPage() {
             </p>
           </div>
           <form action="#" method="post" enctype="multipart/form-data" onSubmit={handleSubmit}>
-            <input type="text" placeholder="Ketikkan judul laporanmu disini!" required />
-            <textarea placeholder="Ketikkan isi laporan Anda" rows="5" required></textarea>
-            <input type="date" placeholder="Pilih tanggal kejadian" required />
-            <input type="text" placeholder="Ketik lokasi kejadian" required />
+            <input type="text" name="title" placeholder="Ketikkan judul laporanmu disini!" required />
+            <textarea name="description" placeholder="Ketikkan isi laporan Anda" rows="5" required></textarea>
+            <input type="date" name="date" placeholder="Pilih tanggal kejadian" required />
+            <input type="text" name="location" placeholder="Ketik lokasi kejadian" required />
             <div class="file-upload">
               <input type="file" id="file" class="file-input" accept=".jpg,.jpeg,.png,.pdf" required onChange={handleFileChange} />
               <label for="file">{fileName()}</label>
@@ -125,7 +167,7 @@ export default function LandingPage() {
           </form>
           {showPopup() && (
             <div class="popup">
-              <img src="public\img\centangg.png" alt="Check" class="check-icon" />
+              <img src="public/img/centangg.png" alt="Check" class="check-icon" />
               <p>Laporan Anda akan segera diproses</p>
             </div>
           )}
@@ -184,12 +226,8 @@ export default function LandingPage() {
               <BsTelephoneFill size={24} color="#fff" />
             </div>
             <div class="details">
-              <h3>Phone</h3>
-              <p>
-                +62 889 9556 7879
-                <br />
-                +62 858 3637 9987
-              </p>
+              <h3>Telepon</h3>
+              <p>(021) 23456789</p>
             </div>
           </div>
           <div class="info-item">
@@ -198,22 +236,35 @@ export default function LandingPage() {
             </div>
             <div class="details">
               <h3>Email</h3>
-              <p>helloeasyrep@gmail.com</p>
+              <p>info@easyrep.com</p>
             </div>
           </div>
         </div>
         <div class="contact-form">
-          <h2>Kontak Kami</h2>
+          <h2>Hubungi Kami</h2>
           <p>Silahkan isi form di bawah ini untuk menghubungi kami</p>
-          <form>
-            <input type="text" placeholder="Masukan nama anda" required />
-            <input type="email" placeholder="Masukan email anda" required />
-            <textarea placeholder="Masukan pesan anda" required></textarea>
-            <button type="submit">Kirim</button>
+          <form onSubmit={handleContactSubmit}>
+            <div class="form-group">
+              <input type="text" name="name" placeholder="Nama" required />
+            </div>
+            <div class="form-group">
+              <input type="email" name="email" placeholder="Email" required />
+            </div>
+            <div class="form-group">
+              <textarea name="message" placeholder="Pesan" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn">
+              Kirim Pesan
+            </button>
           </form>
+          {showMessagePopup() && (
+            <div class="popup">
+              <img src="public/img/centangg.png" alt="Check" class="check-icon" />
+              <p>Pesan Anda telah terkirim</p>
+            </div>
+          )}
         </div>
       </div>
-
       <footer class="footer">
         <div class="footer-top">
           <div class="footer-logo">

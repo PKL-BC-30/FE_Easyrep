@@ -28,6 +28,18 @@ const Sidebar = () => {
           </a>
         </li>
         <li>
+          <a href="/datapelaporan">
+            <i class="bx bxs-file-doc"></i>
+            <span class="text">Data pelaporan</span>
+          </a>
+        </li>
+        <li>
+          <a href="/datapesan">
+            <i class="bx bxs-file-doc"></i>
+            <span class="text">Data pesan</span>
+          </a>
+        </li>
+        <li>
           <a href="/landingpage">
             <i class="bx bx-home"></i>
             <span class="text">Landing page</span>
