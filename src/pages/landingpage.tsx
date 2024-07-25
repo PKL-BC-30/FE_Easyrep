@@ -143,7 +143,7 @@ export default function LandingPage() {
         </div>
         <img src="public/img/ilustrasi2.png" alt="Illustration" class="header-image" />
       </header>
-      <div class="form-page">
+      <div class="form-pagee">
         <div class="form-containeer">
           <div class="form-header">
             <h2>Sampaikan Laporan Anda</h2>

@@ -139,9 +139,15 @@
   max-width: 400px;
   width: 100%;
   margin-right: -4rem;
+  transition: transform 0.3s ease;
+
 }
 
-.form-page {
+.header-image:hover {
+  transform: scale(1.05);
+}
+
+.form-pagee {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -190,12 +196,12 @@ form {
   gap: 1rem;
 }
 
-input[type="text"],
+.form-pagee [type="text"],
 input[type="date"],
 textarea {
   width: 100%;
   padding: 0.75rem;
-  border-radius: 10px;
+  border-radius: 4px;
   margin-bottom: 0.2rem;
   border: 1px solid #333;
   background: #333;
@@ -294,6 +300,8 @@ button[type="submit"]:hover {
   color: #333; /* Warna teks berdasarkan warna item */
   border-radius: 10px; /* Membuat sudut sedikit melengkung */
   background-color: #e4dcf3;
+  transition: transform 0.3s ease;
+
 }
 
 .feature__card > div {
@@ -318,7 +326,9 @@ button[type="submit"]:hover {
 .feature__card:nth-child(2n) {
   transform: translateY(-3rem); /* Disesuaikan untuk memindahkan kartu dengan nomor genap ke bawah */
 }
-
+.feature__card:hover {
+  transform: scale(1.05);
+}
 .contact-container {
   display: flex;
   justify-content: center;

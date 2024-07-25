@@ -35,7 +35,7 @@ const Sidebar = () => {
         </li>
         <li>
           <a href="/datapesan">
-            <i class="bx bxs-file-doc"></i>
+            <i class="bx bx-message-rounded-dots"></i>
             <span class="text">Data pesan</span>
           </a>
         </li>

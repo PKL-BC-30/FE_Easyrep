@@ -68,7 +68,7 @@ section {
 
 p {
   color: rgba(255, 255, 255, 0.8);
-  font-size: 0.875rem;
+  font-size: 0.87rem;
   font-weight: 500;
   letter-spacing: 0.44px;
   word-wrap: break-word;
@@ -135,7 +135,7 @@ form {
 }
 
 form p {
-  font-size: 0.975rem;
+  font-size: 1rem;
   margin-bottom: 5px;
 }
 
@@ -146,13 +146,36 @@ label {
 }
 
 input {
-  padding: 0.7rem;
+  padding: 0.7rem; /* Padding konsisten dengan rem */
   margin-bottom: 1rem;
-  border-radius: 5px;
+  border-radius: 4px;
   background-color: #222436;
   color: #fff;
   width: 100%;
-  font-size: 14px;
+  font-size: 0.85rem; /* Ukuran font konsisten dengan rem */
+  box-sizing: border-box; /* Memastikan padding dan border dihitung dalam lebar total */
+}
+.password-container {
+  position: relative;
+}
+
+.password-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  padding-right: 2.5rem; /* Add space for the toggle icon */
+}
+
+.password-wrapper i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+  color: #b3b3b3; /* Match the color with input text color */
 }
 
 .checkbox-containerr {

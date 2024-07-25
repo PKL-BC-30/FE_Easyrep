@@ -1,3 +1,10 @@
+.containerpw {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
 .form-containerpw {
     background: #1b1b1b;
     border-radius: 8px;

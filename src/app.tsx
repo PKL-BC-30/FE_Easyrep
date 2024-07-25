@@ -22,7 +22,6 @@ const App: Component = () => {
       <Route path="/login" component={LoginPage} />
       <Route path="/" component={RegisterPage} />
       <Route path="/tentang" component={TentangPage} />
-      <Route path="/editdata/:email" component={EditData} />
       <Route path="/forgotpassword" component={LupaPassword} />
       <Route path="/resetpassword" component={ResetPassword} />
       <Route path="/verify-code" component={VerifyCode} />

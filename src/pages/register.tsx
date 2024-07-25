@@ -6,6 +6,7 @@ export default function Register() {
   const [email, setEmail] = createSignal("");
   const [password, setPassword] = createSignal("");
   const [terms, setTermscb] = createSignal(false);
+  const [showPassword, setShowPassword] = createSignal(false); // New state for password visibility
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -73,10 +74,23 @@ export default function Register() {
               <label for="email"></label>
               <input type="email" id="email" value={email()} onInput={(e) => setEmail(e.target.value)} placeholder="Masukkan email Anda" required />
             </div>
-            <div>
+            <div class="password-container">
               <p>Password</p>
               <label for="password"></label>
-              <input type="password" id="password" value={password()} onInput={(e) => setPassword(e.target.value)} placeholder="Masukkan password Anda" required />
+              <div class="password-wrapper">
+                <input
+                  type={showPassword() ? "text" : "password"} // Toggle between text and password
+                  id="password"
+                  value={password()}
+                  onInput={(e) => setPassword(e.target.value)}
+                  placeholder="Masukkan password Anda"
+                  required
+                />
+                <i
+                  class={`bx ${showPassword() ? "bx-show" : "bx-hide"}`} // Toggle icon class
+                  onClick={() => setShowPassword(!showPassword())} // Toggle visibility
+                ></i>
+              </div>
             </div>
             <div class="checkbox-containerr">
               <div class="checkboxx">

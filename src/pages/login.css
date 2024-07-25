@@ -16,6 +16,7 @@ section {
   display: flex;
   overflow: hidden;
   width: 100%;
+  flex-wrap: wrap; /* Ensure elements wrap in smaller screens */
 }
 
 .form-containner {
@@ -28,7 +29,6 @@ section {
   box-sizing: border-box;
   flex: 1;
   margin: 1rem;
-  padding: 2rem;
 }
 
 .image-containerr {
@@ -43,7 +43,7 @@ section {
   padding: 1rem;
   color: #fff;
   border-radius: 10px;
-  width: 60%; /* Mengurangi lebar elemen */
+  width: 60%;
   height: 560px; /* Menyesuaikan tinggi elemen */
   margin: auto;
 }
@@ -135,12 +135,14 @@ p {
   height: 1px;
   border: 1px rgba(255, 255, 255, 0.3) solid;
 }
+
 .separator-linee {
   width: 70%;
   flex: 1;
   height: 1px;
   border: 1px rgba(255, 255, 255, 0.3) solid;
 }
+
 form {
   display: flex;
   flex-direction: column;
@@ -161,13 +163,30 @@ label {
 input {
   padding: 0.5rem;
   margin-bottom: 1.5rem;
-  border-radius: 5px;
+  border-radius: 4px;
   background-color: #222436;
   color: #b3b3b3;
   width: 100%; /* Lebar 100% */
   font-size: 14px;
 }
+.passwoord-containerr {
+  position: relative;
+}
+.passwoord-containerr input {
+  padding-right: 40px; /* Space for the icon */
+  background-color: #222436; /* Ensure the background color is consistent */
+  color: #b3b3b3; 
+}
 
+.passwoord-containerr i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+  bottom: 30%;
+}
 .checkbox-container {
   display: flex;
   align-items: center;
@@ -291,27 +310,17 @@ input {
 
 @media (max-width: 768px) {
   .container {
-    flex-direction: row;
-  }
-
-  .form-containner {
-    padding: 1rem;
-    width: 100%;
+    flex-direction: column; /* Ensure it stacks vertically on smaller screens */
   }
 
   .form-containner,
   .image-containerr {
     margin: 1rem;
-    width: calc(50% - 2rem);
+    width: calc(100% - 2rem); /* Adjust width to full width */
   }
 
   .social-login {
-    flex-direction: row;
-    margin: 0 0.5rem;
-  }
-
-  .social-login button {
-    margin-bottom: 1rem;
+    flex-direction: column; /* Stack buttons vertically */
   }
 
   .separator {
@@ -328,15 +337,6 @@ input {
     background-size: cover; /* Menyesuaikan background size */
     height: auto; /* Menyesuaikan tinggi elemen */
   }
-  .image-containerr h1,
-  .image-containerr h2,
-  .image-containerr h3 {
-    color: white;
-    font-size: 30px;
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-weight: 600;
-    text-align: left; /* Align text to the left */
-  }
 
   .submit-btn {
     width: auto;
@@ -348,34 +348,24 @@ input {
     border-radius: 5px;
     background-color: #222436;
     color: #b3b3b3;
-    width: 80%; /* Lebar 100% */
+    width: 100%; /* Lebar 100% */
     font-size: 14px;
   }
 }
 
 @media (max-width: 576px) {
   .container {
-    flex-direction: row;
-  }
-
-  .form-containner {
-    padding: 1rem;
-    width: 100%;
+    flex-direction: column; /* Ensure stacking vertically on extra small screens */
   }
 
   .form-containner,
   .image-containerr {
     margin: 1rem;
-    width: calc(50% - 2rem);
+    width: calc(100% - 2rem); /* Adjust width to full width */
   }
 
   .social-login {
-    flex-direction: row;
-    margin: 0 0.5rem;
-  }
-
-  .social-login button {
-    margin-bottom: 1rem;
+    flex-direction: column; /* Stack buttons vertically */
   }
 
   .separator {
@@ -392,15 +382,6 @@ input {
     background-size: cover; /* Menyesuaikan background size */
     height: auto; /* Menyesuaikan tinggi elemen */
   }
-  .image-containerr h1,
-  .image-containerr h2,
-  .image-containerr h3 {
-    color: white;
-    font-size: 30px;
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-weight: 600;
-    text-align: left; /* Align text to the left */
-  }
 
   .submit-btn {
     width: auto;
@@ -412,7 +393,7 @@ input {
     border-radius: 5px;
     background-color: #222436;
     color: #b3b3b3;
-    width: 80%; /* Lebar 100% */
+    width: 100%; /* Lebar 100% */
     font-size: 14px;
   }
 }

@@ -2,6 +2,7 @@ import { createSignal, onMount } from "solid-js";
 import { useParams, useNavigate } from "@solidjs/router";
 import Sidebar from "./sidebar";
 import "./editdata.css";
+import "boxicons/css/boxicons.min.css"; 
 
 const EditData = () => {
   const { email } = useParams();
@@ -11,6 +12,7 @@ const EditData = () => {
   const [password, setPassword] = createSignal("");
   const [role, setRole] = createSignal("User");
   const [newEmail, setNewEmail] = createSignal(email);
+  const [showPassword, setShowPassword] = createSignal(false);
 
   onMount(() => {
     const savedData = localStorage.getItem("users");
@@ -65,9 +67,10 @@ const EditData = () => {
             Email:
             <input type="email" value={newEmail()} onInput={(e) => setNewEmail((e.target as HTMLInputElement).value)} />
           </label>
-          <label>
+          <label class="password-container">
             Password:
-            <input type="password" value={password()} onInput={(e) => setPassword((e.target as HTMLInputElement).value)} />
+            <input type={showPassword() ? "text" : "password"} value={password()} onInput={(e) => setPassword((e.target as HTMLInputElement).value)} />
+            <i class={`bx ${showPassword() ? "bx-show" : "bx-hide"}`} onClick={() => setShowPassword(!showPassword())}></i>
           </label>
           <label>
             Role:

@@ -1,10 +1,12 @@
 import { createSignal } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 import "./login.css";
+import "boxicons/css/boxicons.min.css";
 
 const Login = () => {
   const [email, setEmail] = createSignal("");
   const [password, setPassword] = createSignal("");
+  const [showPassword, setShowPassword] = createSignal(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e: Event) => {
@@ -60,10 +62,11 @@ const Login = () => {
               <label for="email"></label>
               <input type="email" id="email" value={email()} onInput={(e) => setEmail(e.target.value)} placeholder="Masukkan email Anda" required />
             </div>
-            <div>
+            <div class="passwoord-containerr">
               <p>Password</p>
               <label for="password"></label>
-              <input type="password" id="password" value={password()} onInput={(e) => setPassword(e.target.value)} placeholder="Masukkan password Anda" required />
+              <input type={showPassword() ? "text" : "password"} id="password" value={password()} onInput={(e) => setPassword(e.target.value)} placeholder="Masukkan password Anda" required />
+              <i class={`bx ${showPassword() ? "bx-show" : "bx-hide"}`} onClick={() => setShowPassword(!showPassword())}></i>
             </div>
             <a href="/forgotpassword" class="forgot-passwordd">
               Lupa password?
