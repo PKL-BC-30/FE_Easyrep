@@ -10,6 +10,8 @@ export default function LandingPage() {
   const [showPopup, setShowPopup] = createSignal(false);
   const [showLoginPopup, setShowLoginPopup] = createSignal(false);
   const [showMessagePopup, setShowMessagePopup] = createSignal(false);
+  const [showValidationError, setShowValidationError] = createSignal(false);
+
 
   onMount(() => {
     const user = JSON.parse(localStorage.getItem("currentUser") || "null");
@@ -36,13 +38,28 @@ export default function LandingPage() {
     event.preventDefault();
 
     const formData = new FormData(event.target as HTMLFormElement);
+    const title = formData.get("title");
+    const description = formData.get("description");
+    const date = formData.get("date");
+    const location = formData.get("location");
+
+    if (!title || !description || !date || !location || !fileName()) {
+      setShowValidationError(true);
+      setTimeout(() => {
+        setShowValidationError(false);
+      }, 3000);
+      return;
+    }
+
     const newReport = {
-      title: formData.get("title"),
-      description: formData.get("description"),
-      date: formData.get("date"),
-      location: formData.get("location"),
+      title,
+      description,
+      date,
+      location,
       fileName: fileName(),
+      action: "not_processed", // Default status
     };
+
 
     const existingReports = JSON.parse(localStorage.getItem("reports") || "[]");
     existingReports.push(newReport);
@@ -124,7 +141,7 @@ export default function LandingPage() {
               <a href="/login" class="login">
                 Login
               </a>
-              <a href="/register" class="register">
+              <a href="/" class="register">
                 Register
               </a>
             </>
