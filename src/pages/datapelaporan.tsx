@@ -5,29 +5,42 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import "./datapelaporan.css";
 import Sidebar from "./sidebar";
 
-const ReportsPage = () => {
-  const [reports, setReports] = createSignal<any[]>([]);
+interface Report {
+  title: string;
+  description: string;
+  date: string;
+  location: string;
+  fileName: string;
+  action: string;
+}
 
-  onMount(() => {
-    const savedReports = JSON.parse(localStorage.getItem("reports") || "[]").map((report) => ({
+const ReportsPage = () => {
+  const [reports, setReports] = createSignal<Report[]>([]);
+
+  const fetchReports = () => {
+    const savedReports = JSON.parse(localStorage.getItem("reports") || "[]").map((report: Report) => ({
       ...report,
       action: report.action || "not_processed",
     }));
-    console.log("Fetched reports from localStorage: ", savedReports);
     setReports(savedReports);
-    console.log("State reports: ", reports());
-  });
+  };
 
-  const handleStatusChange = (reportIndex, newStatus) => {
+  const updateReports = (updatedReports: Report[]) => {
+    setReports(updatedReports);
+    localStorage.setItem("reports", JSON.stringify(updatedReports));
+  };
+
+  const handleStatusChange = (reportIndex: number, newStatus: string) => {
     const updatedReports = reports().map((report, index) => {
       if (index === reportIndex) {
         return { ...report, action: newStatus };
       }
       return report;
     });
-    setReports(updatedReports);
-    localStorage.setItem("reports", JSON.stringify(updatedReports));
+    updateReports(updatedReports);
   };
+
+  onMount(fetchReports);
 
   const columnDefs = [
     { headerName: "Judul", field: "title" },

@@ -25,16 +25,19 @@ export default function LandingPage() {
         </div>
         <ul class="nav-links">
           <li>
-            <a href="/landingpage">Beranda</a>
+            <a href="/">Beranda</a>
           </li>
           <li>
-            <a href="/landingpage#tatacara">Tata Cara</a>
+            <a href="/#tatacara">Tata Cara</a>
           </li>
           <li>
-            <a href="/landingpage#contact">Kontak</a>
+            <a href="/#contact">Kontak</a>
           </li>
           <li>
             <a href="/tentang">Tentang</a>
+          </li>
+          <li>
+            <a href="/history">Laporan</a>
           </li>
         </ul>
         <div class="auth-buttons">

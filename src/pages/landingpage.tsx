@@ -11,7 +11,7 @@ export default function LandingPage() {
   const [showLoginPopup, setShowLoginPopup] = createSignal(false);
   const [showMessagePopup, setShowMessagePopup] = createSignal(false);
   const [showValidationError, setShowValidationError] = createSignal(false);
-
+  const [validationError, setValidationError] = createSignal("");
 
   onMount(() => {
     const user = JSON.parse(localStorage.getItem("currentUser") || "null");
@@ -44,6 +44,7 @@ export default function LandingPage() {
     const location = formData.get("location");
 
     if (!title || !description || !date || !location || !fileName()) {
+      setValidationError("Semua field harus diisi dan file harus diupload.");
       setShowValidationError(true);
       setTimeout(() => {
         setShowValidationError(false);
@@ -51,15 +52,25 @@ export default function LandingPage() {
       return;
     }
 
+    const user = JSON.parse(localStorage.getItem("currentUser") || "null");
+    if (!user) {
+      setShowLoginPopup(true);
+      setTimeout(() => {
+        setShowLoginPopup(false);
+      }, 3000);
+      return;
+    }
+
     const newReport = {
+      id: Date.now(),
       title,
       description,
       date,
       location,
       fileName: fileName(),
-      action: "not_processed", // Default status
+      action: "not_processed",
+      username: user.username,
     };
-
 
     const existingReports = JSON.parse(localStorage.getItem("reports") || "[]");
     existingReports.push(newReport);
@@ -67,19 +78,13 @@ export default function LandingPage() {
 
     console.log("New report saved: ", newReport);
 
-    if (!loggedInUser()) {
-      setShowLoginPopup(true);
-      setTimeout(() => {
-        setShowLoginPopup(false);
-      }, 3000);
-    } else {
-      setShowPopup(true);
-      setTimeout(() => {
-        setShowPopup(false);
-        (event.target as HTMLFormElement).reset();
-        setFileName("Upload Lampiran (Max 10 MB)");
-      }, 3000);
-    }
+    setShowPopup(true);
+    setTimeout(() => {
+      setShowPopup(false);
+      (event.target as HTMLFormElement).reset();
+      setFileName("Upload Lampiran (Max 10 MB)");
+      window.location.href = "/history";
+    }, 3000);
   };
 
   const handleContactSubmit = (event: Event) => {
@@ -113,7 +118,7 @@ export default function LandingPage() {
         </div>
         <ul class="nav-links">
           <li>
-            <a href="#home">Beranda</a>
+            <a href="/">Beranda</a>
           </li>
           <li>
             <a href="#tatacara">Tata Cara</a>
@@ -125,7 +130,7 @@ export default function LandingPage() {
             <a href="/tentang">Tentang</a>
           </li>
           <li>
-            <a href="/reports">Laporan</a>
+            <a href="/history">Laporan</a>
           </li>
         </ul>
         <div class="auth-buttons">
@@ -141,7 +146,7 @@ export default function LandingPage() {
               <a href="/login" class="login">
                 Login
               </a>
-              <a href="/" class="register">
+              <a href="/register" class="register">
                 Register
               </a>
             </>
@@ -186,6 +191,9 @@ export default function LandingPage() {
             <div class="popup">
               <img src="public/img/centangg.png" alt="Check" class="check-icon" />
               <p>Laporan Anda akan segera diproses</p>
+              <button onclick={() => (window.location.href = "/history")} class="btn">
+                Cek Laporanmu!
+              </button>
             </div>
           )}
           {showLoginPopup() && (
@@ -193,8 +201,14 @@ export default function LandingPage() {
               <p>Silahkan login terlebih dahulu untuk dapat melaporkan.</p>
             </div>
           )}
+          {showValidationError() && (
+            <div class="popup warning">
+              <p>{validationError()}</p>
+            </div>
+          )}
         </div>
       </div>
+
       <div class="section_container feature_container" id="tatacara">
         <h3 class="section__subheader">Langkah-langkah pelaporan</h3>
         <h2 class="section__header">
@@ -220,7 +234,7 @@ export default function LandingPage() {
         <div class="feature__card">
           <div>.04</div>
           <h4>Follow Up</h4>
-          <p>Anda dapat mengikuti perkembangan laporan Anda melalui situs ini atau menghubungi kami langsung.</p>
+          <p>Anda dapat mengikuti perkembangan laporan Anda melalui menu 'Laporan Saya' pada dashboard pengguna.</p>
         </div>
       </div>
       <div class="contact-container" id="contact">

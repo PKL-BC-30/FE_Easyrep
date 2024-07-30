@@ -18,7 +18,7 @@ const Sidebar = () => {
         <li>
           <a href="/useradmin">
             <i class="bx bxs-dashboard"></i>
-            <span class="text">List User</span>
+            <span class="text">Dashboard</span>
           </a>
         </li>
         <li>
@@ -40,7 +40,7 @@ const Sidebar = () => {
           </a>
         </li>
         <li>
-          <a href="/landingpage">
+          <a href="/">
             <i class="bx bx-home"></i>
             <span class="text">Landing page</span>
           </a>

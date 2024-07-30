@@ -14,17 +14,19 @@ import ResetPassword from "./pages/resetpass";
 import VerifyCode from "./pages/verifycode";
 import DataPelaporan from "./pages/datapelaporan";
 import DataPesanPengguna from "./pages/datapesan";
+import HistoryLaporan from "./pages/historylaporan";
 
 const App: Component = () => {
   return (
     <Routes>
-      <Route path="/landingpage" component={LandingPage} />
+      <Route path="/" component={LandingPage} />
       <Route path="/login" component={LoginPage} />
-      <Route path="/" component={RegisterPage} />
+      <Route path="/register" component={RegisterPage} />
       <Route path="/tentang" component={TentangPage} />
       <Route path="/forgotpassword" component={LupaPassword} />
       <Route path="/resetpassword" component={ResetPassword} />
       <Route path="/verify-code" component={VerifyCode} />
+      <Route path="/history" component={HistoryLaporan} />
       <Route
         path="/datapelaporan"
         component={() => (

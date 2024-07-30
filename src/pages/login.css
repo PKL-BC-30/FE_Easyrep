@@ -233,6 +233,51 @@ input {
   color: #663b9e;
   text-decoration: none;
 }
+/* Style untuk overlay pop-up */
+.login-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style untuk konten pop-up */
+.login-popup {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  position: relative;
+  max-width: 400px;
+  width: 90%;
+}
+
+/* Style untuk pesan dalam pop-up */
+.login-popup p {
+  color: #333; /* Ganti dengan warna yang diinginkan */
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+/* Style untuk tombol di pop-up */
+.popup-button.confirmm {
+  background-color: #5e99ff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup-button.confirmm:hover {
+  background-color: #004ccf;
+}
+
 
 /* Media Queries untuk Responsiveness */
 @media (min-width: 768px) {
@@ -312,7 +357,10 @@ input {
   .container {
     flex-direction: column; /* Ensure it stacks vertically on smaller screens */
   }
+  .form-containner {
+        background-color: transparent;
 
+  }
   .form-containner,
   .image-containerr {
     margin: 1rem;
@@ -336,6 +384,7 @@ input {
   .image-containerr {
     background-size: cover; /* Menyesuaikan background size */
     height: auto; /* Menyesuaikan tinggi elemen */
+    display: none; 
   }
 
   .submit-btn {
@@ -381,8 +430,9 @@ input {
   .image-containerr {
     background-size: cover; /* Menyesuaikan background size */
     height: auto; /* Menyesuaikan tinggi elemen */
-  }
+    background-color: transparent;
 
+  }
   .submit-btn {
     width: auto;
   }

@@ -27,6 +27,8 @@
   margin-left: 100px;
   padding: 2px; 
   box-sizing: border-box;
+  padding-left: 2rem;
+
 }
 
 /* Custom style for AG Grid */
@@ -89,6 +91,9 @@
 }
 
 .action-button {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   padding: -6px 10px; /* Mengurangi padding vertikal dan sedikit mengurangi padding horizontal */
   border: none;
   border-radius: 5px;
@@ -99,6 +104,7 @@
   background-color: #4c5caf;
   color: white;
   transition: opacity 0.3s ease;
+  margin-top: -5px;
 }
 
 .action-button:hover {

@@ -7,6 +7,8 @@ const Login = () => {
   const [email, setEmail] = createSignal("");
   const [password, setPassword] = createSignal("");
   const [showPassword, setShowPassword] = createSignal(false);
+  const [showPopup, setShowPopup] = createSignal(false);
+  const [popupMessage, setPopupMessage] = createSignal("");
   const navigate = useNavigate();
 
   const handleSubmit = (e: Event) => {
@@ -16,21 +18,33 @@ const Login = () => {
     const user = users.find((user: { email: string; password: string; role: string }) => user.email === email());
 
     if (!user) {
-      alert("Email yang Anda inputkan tidak ada");
+      setPopupMessage("Email yang Anda inputkan tidak ada");
+      setShowPopup(true);
       return;
     }
 
     // Compare password without hashing
     if (user.password === password()) {
-      alert("Login sukses");
+      setPopupMessage("Login sukses");
+      setShowPopup(true);
       localStorage.setItem("currentUser", JSON.stringify(user));
+      // Navigate after user closes the popup
+      // No setTimeout needed
+    } else {
+      setPopupMessage("Password salah");
+      setShowPopup(true);
+    }
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+    const user = JSON.parse(localStorage.getItem("currentUser") || "null");
+    if (user) {
       if (user.role === "Admin") {
         navigate("/useradmin");
       } else {
         navigate("/landingpage");
       }
-    } else {
-      alert("Password salah");
     }
   };
 
@@ -76,7 +90,7 @@ const Login = () => {
             </button>
           </form>
           <div class="login-link">
-            Belum punya akun? <a href="/">Buat sekarang!</a>
+            Belum punya akun? <a href="/register">Buat sekarang!</a>
           </div>
         </div>
         <div class="image-containerr">
@@ -85,6 +99,18 @@ const Login = () => {
           <h3>Masuk untuk melaporkan sekarang!</h3>
         </div>
       </div>
+
+      {/* Pop-up */}
+      {showPopup() && (
+        <div class="login-popup-overlay">
+          <div class="login-popup">
+            <p>{popupMessage()}</p>
+            <button onClick={closePopup} class="popup-button confirmm">
+              OK
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
