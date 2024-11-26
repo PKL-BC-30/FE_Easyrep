@@ -1,66 +1,11 @@
 import { createSignal, onMount } from "solid-js";
 import "./tentang.css";
+import Navbar from "./Navbar";
 
-export default function LandingPage() {
-  const [loggedInUser, setLoggedInUser] = createSignal("");
-
-
-  onMount(() => {
-    const user = JSON.parse(localStorage.getItem("currentUser"));
-    if (user) {
-      setLoggedInUser(user.username);
-    }
-  });
-
-  const handleLogout = () => {
-    localStorage.removeItem("currentUser");
-    setLoggedInUser("");
-  };
-
+export default function Tentang() {
   return (
     <section class="landing-page">
-      <nav class="navbar">
-        <div class="logo">
-          <img src="public\img\logoweb.png" alt="Logoweb" />
-        </div>
-        <ul class="nav-links">
-          <li>
-            <a href="/">Beranda</a>
-          </li>
-          <li>
-            <a href="/#tatacara">Tata Cara</a>
-          </li>
-          <li>
-            <a href="/#contact">Kontak</a>
-          </li>
-          <li>
-            <a href="/tentang">Tentang</a>
-          </li>
-          <li>
-            <a href="/history">Laporan</a>
-          </li>
-        </ul>
-        <div class="auth-buttons">
-          {loggedInUser() ? (
-            <>
-              <span>Halo, {loggedInUser()}</span>
-              <button onClick={handleLogout} class="logout">
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <a href="/login" class="login">
-                Login
-              </a>
-              <a href="/" class="register">
-                Register
-              </a>
-            </>
-          )}
-        </div>
-      </nav>
-
+      <Navbar />
       <div class="content-containeer">
         <div class="title">
           <div class="title-text">Apa itu Easyrep?</div>

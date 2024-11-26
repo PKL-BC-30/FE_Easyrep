@@ -70,7 +70,7 @@ const HistoryLaporan = () => {
         </div>
         <ul class="nav-links">
           <li>
-            <a href="/landingpage">Beranda</a>
+            <a href="/">Beranda</a>
           </li>
           <li>
             <a href="/landingpage#tatacara">Tata Cara</a>

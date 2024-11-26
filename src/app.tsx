@@ -3,10 +3,11 @@ import { Routes, Route } from "@solidjs/router";
 
 import LoginPage from "./pages/login";
 import RegisterPage from "./pages/register";
-import GridPage from "./pages/gridpage";
+// benerin import
+import GridPage from "./pages/GridPage";
 import LandingPage from "./pages/landingpage";
 import RequireAdmin from "./pages/middleware";
-import UserManagement from "./pages/gridmanagement";
+import UserManagement from "./pages/GridManagement";
 import TentangPage from "./pages/tentang";
 import EditData from "./pages/editdata";
 import LupaPassword from "./pages/forgotpass";
@@ -15,6 +16,7 @@ import VerifyCode from "./pages/verifycode";
 import DataPelaporan from "./pages/datapelaporan";
 import DataPesanPengguna from "./pages/datapesan";
 import HistoryLaporan from "./pages/historylaporan";
+import Navbar from "./pages/Navbar";
 
 const App: Component = () => {
   return (
@@ -27,6 +29,8 @@ const App: Component = () => {
       <Route path="/resetpassword" component={ResetPassword} />
       <Route path="/verify-code" component={VerifyCode} />
       <Route path="/history" component={HistoryLaporan} />
+      <Route path="/navbar" component={Navbar} />
+
       <Route
         path="/datapelaporan"
         component={() => (

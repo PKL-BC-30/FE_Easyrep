@@ -3,6 +3,7 @@ import "./landingpage.css";
 import { FaSolidLocationDot } from "solid-icons/fa";
 import { BsTelephoneFill } from "solid-icons/bs";
 import { AiOutlineMail } from "solid-icons/ai";
+import Navbar from "./Navbar";
 
 export default function LandingPage() {
   const [loggedInUser, setLoggedInUser] = createSignal<string | null>(null);
@@ -112,47 +113,7 @@ export default function LandingPage() {
 
   return (
     <section class="landing-page">
-      <nav class="navbar">
-        <div class="logo">
-          <img src="public/img/logoweb.png" alt="Logoweb" />
-        </div>
-        <ul class="nav-links">
-          <li>
-            <a href="/">Beranda</a>
-          </li>
-          <li>
-            <a href="#tatacara">Tata Cara</a>
-          </li>
-          <li>
-            <a href="#contact">Kontak</a>
-          </li>
-          <li>
-            <a href="/tentang">Tentang</a>
-          </li>
-          <li>
-            <a href="/history">Laporan</a>
-          </li>
-        </ul>
-        <div class="auth-buttons">
-          {loggedInUser() ? (
-            <>
-              <span>Halo, {loggedInUser()}</span>
-              <button onClick={handleLogout} class="logout">
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <a href="/login" class="login">
-                Login
-              </a>
-              <a href="/register" class="register">
-                Register
-              </a>
-            </>
-          )}
-        </div>
-      </nav>
+      <Navbar />
       <header class="header">
         <div class="header-content" id="home">
           <h1>

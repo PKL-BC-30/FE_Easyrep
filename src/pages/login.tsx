@@ -43,7 +43,7 @@ const Login = () => {
       if (user.role === "Admin") {
         navigate("/useradmin");
       } else {
-        navigate("/landingpage");
+        navigate("/");
       }
     }
   };

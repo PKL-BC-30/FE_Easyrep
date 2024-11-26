@@ -1,5 +1,5 @@
 import type { Component } from "solid-js";
-import GridComponent from "./gridcomponent";
+import GridComponent from "./GridComponent";
 import './gridpage.css'
 
 const GridPage: Component = () => {
